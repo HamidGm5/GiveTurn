@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34616.47
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveTurn.API", "GiveTurn.API\GiveTurn.API.csproj", "{EBCDDB1E-6E1D-4E87-8B76-7E55F0A5C34D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveTurn.Models", "GiveTurn.Models\GiveTurn.Models.csproj", "{4E5ED66F-B69D-4448-B218-79E4A6522400}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EBCDDB1E-6E1D-4E87-8B76-7E55F0A5C34D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBCDDB1E-6E1D-4E87-8B76-7E55F0A5C34D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBCDDB1E-6E1D-4E87-8B76-7E55F0A5C34D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBCDDB1E-6E1D-4E87-8B76-7E55F0A5C34D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4E5ED66F-B69D-4448-B218-79E4A6522400}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4E5ED66F-B69D-4448-B218-79E4A6522400}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4E5ED66F-B69D-4448-B218-79E4A6522400}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4E5ED66F-B69D-4448-B218-79E4A6522400}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {88878E08-B38E-49FA-BBC6-AD5AEC9518D2}
+	EndGlobalSection
+EndGlobal
