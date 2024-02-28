@@ -21,6 +21,10 @@ namespace GiveTurn.API.Controllers
         }
 
         [HttpGet(Name = "GetAllUser")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+
         public async Task<ActionResult<ICollection<UserDto>>> GetAllUser()
         {
             try
@@ -43,6 +47,10 @@ namespace GiveTurn.API.Controllers
         }
 
         [HttpGet("{Userid:int}", Name = "GetUserById")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+
         public async Task<ActionResult<UserDto>> GetuserById(int Userid)
         {
             try
@@ -66,6 +74,10 @@ namespace GiveTurn.API.Controllers
         }
 
         [HttpGet("{username}/{password}", Name = "Login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+
         public async Task<ActionResult<UserDto>> Login(string username, string password)
         {
             try
@@ -88,6 +100,9 @@ namespace GiveTurn.API.Controllers
         }
 
         [HttpPost(Name = "SignUp")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
         public async Task<ActionResult<UserDto>> SignUp([FromBody] UserDto user)
         {
             try
@@ -118,6 +133,9 @@ namespace GiveTurn.API.Controllers
         }
 
         [HttpPatch("{id:int}", Name = "UpdateUser")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+ 
         public async Task<ActionResult<UserDto>> UpdateUser(int id, [FromBody] UserDto user)
         {
             try
@@ -146,7 +164,11 @@ namespace GiveTurn.API.Controllers
                 return BadRequest();
             }
         }
+
         [HttpDelete("{id:int}", Name = "DeleteUser")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
         public async Task<ActionResult<UserDto>> DeleteUser(int id)
         {
             try
