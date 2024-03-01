@@ -14,7 +14,6 @@ namespace GiveTurn.API.Controllers
         private readonly ITurnRepository _repository;
         private readonly IUserRepository _userRepository;
         private readonly IMapper _mapper;
-        CancellationTokenSource cts;
 
         public TurnController(ITurnRepository repository,
             IUserRepository userRepository,
@@ -112,21 +111,12 @@ namespace GiveTurn.API.Controllers
         {
             try
             {
-                cts = new CancellationTokenSource();
                 if (ModelState.IsValid)
                 {
                     var TurnMap = _mapper.Map<Turn>(newturn);
                     TurnMap.User = await _userRepository.GetUserById(Userid);
-
-                    if (newturn.UserTurnDate != null)
-                    {
-                        var AddTurn = await _repository.AddTurns(TurnMap);
-                        return Ok(newturn);
-                    }
-                    else
-                    {
-                        return StatusCode(StatusCodes.Status500InternalServerError);
-                    }
+                    await _repository.AddTurns(TurnMap);
+                    return Ok(newturn);
                 }
                 else
                 {
