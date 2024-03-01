@@ -16,6 +16,7 @@ namespace GiveTurn.API.Repository.Interfaces
 
         Task<DateTime> GiveTurnDateTime();
         Task<DateTime> CheckDateForTurn();
+        Task<DateTime> CheckReserveDate();
         Task<DateTime> CheckTime();
     }
 }
