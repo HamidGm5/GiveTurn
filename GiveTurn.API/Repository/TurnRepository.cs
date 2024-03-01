@@ -210,7 +210,6 @@ namespace GiveTurn.API.Repository
         {
             DateTime Now = DateTime.Now;
             var DateFromCheckDate = await CheckDateForTurn();
-            DateTime Time;                                       // Check it
             DateTime TurnTime;
 
             int TurnHour, TurnMinute;
@@ -233,7 +232,7 @@ namespace GiveTurn.API.Repository
                 var PlusNowToMili = new DateTimeOffset(PlusNow).ToUnixTimeMilliseconds();
                 var LastTurnToMili = new DateTimeOffset(DateFromCheckDate).ToUnixTimeMilliseconds();
 
-                if (PlusNowToMili > LastTurnToMili)
+                if (PlusNowToMili > LastTurnToMili)         // Here it's Not Good Condition!
                 {
                     TurnHour = PlusNow.Hour;
                     TurnMinute = PlusNow.Minute;
@@ -246,7 +245,7 @@ namespace GiveTurn.API.Repository
                 }
 
                 else
-                {                                                   // Problem
+                {
                     var PlusToLast = DateFromCheckDate.AddMinutes(10);
                     TurnHour = PlusToLast.Hour;
                     TurnMinute = PlusToLast.Minute;
