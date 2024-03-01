@@ -97,32 +97,9 @@ namespace GiveTurn.API.Repository
             }
         }
 
-
-        public async Task<User> GetUserById(int Userid)
-        {
-            try
-            {
-                var User = await _context.Users.FindAsync(Userid);
-
-                if (User == null)
-                {
-                    return null;
-                }
-                else
-                {
-                    return User;
-                }
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-
         public async Task<Turn> GetUserTurn(int Userid, int Turnid)
         {
-            var User = await GetUserById(Userid);
+            var User = await _context.Users.Where(ui => ui.Id == Userid).FirstOrDefaultAsync();
 
             if (User == null)
             {
@@ -137,7 +114,7 @@ namespace GiveTurn.API.Repository
 
         public async Task<ICollection<Turn>> GetUserTurns(int Userid)
         {
-            var User = await GetUserById(Userid);
+            var User = await _context.Users.Where(ui => ui.Id == Userid).FirstOrDefaultAsync();
 
             if (User == null)
             {
@@ -177,16 +154,7 @@ namespace GiveTurn.API.Repository
         {
             try
             {
-                DateTime now = DateTime.Now;
-                DateTime TurnDateTime;
-
-                var Date = await CheckDateForTurn();
-
-                int TurnDay = Date.Day;
-
-                var Time = CheckTime(TurnDay);
-
-                TurnDateTime = new DateTime(Date.Year, Date.Month, Date.Day, Time[0], Time[1], 0);
+                DateTime TurnDateTime = await CheckTime();
 
                 return TurnDateTime;
             }
@@ -237,25 +205,28 @@ namespace GiveTurn.API.Repository
         }
 
 
-        public int[] CheckTime(int TurnDay)
+        public async Task<DateTime> CheckTime()
         {
             DateTime Now = DateTime.Now;
-            int[] HourAndMinut = new int[2];
+            var DateFromCheckDate = await CheckDateForTurn();
+            DateTime Time;                                       // Check it
             DateTime TurnTime = Now;
 
-            var ConvertDay = Convert.ToInt32(TurnDay);
+            var ConvertDay = Convert.ToInt32(DateFromCheckDate.Day);
             int TurnHour, TurnMinute = 0;
-            var LastTurn = _context.Turns.Where(ut => ut.UserTurnDate.Day == ConvertDay).Last();
+            var LastTurn = await _context.Turns.Where(ut => ut.UserTurnDate.Day == ConvertDay).
+                                            OrderDescending().FirstOrDefaultAsync();
 
             if (LastTurn == null)
             {
                 TurnTime = Now.AddMinutes(10);
                 TurnHour = TurnTime.Hour;
                 TurnMinute = TurnTime.Minute;
-                HourAndMinut[0] = TurnHour;
-                HourAndMinut[1] = TurnMinute;
 
-                return HourAndMinut;
+                TurnTime = new DateTime(DateFromCheckDate.Year, DateFromCheckDate.Month, DateFromCheckDate.Day,
+                                        TurnHour, TurnMinute, 0);
+
+                return TurnTime;
             }
 
             else
@@ -266,19 +237,26 @@ namespace GiveTurn.API.Repository
 
                 if (PlusNowToMili > LastTurnToMili)
                 {
-                    HourAndMinut[0] = PlusNow.Hour;
-                    HourAndMinut[1] = PlusNow.Minute;
+                    TurnHour = PlusNow.Hour;
+                    TurnMinute = PlusNow.Minute;
 
-                    return HourAndMinut;
+
+                    TurnTime = new DateTime(DateFromCheckDate.Year, DateFromCheckDate.Month, DateFromCheckDate.Day,
+                                            TurnHour, TurnMinute, 0);
+
+                    return TurnTime;
                 }
 
                 else
                 {
                     var PlusToLast = LastTurn.UserTurnDate.AddMinutes(10);
-                    HourAndMinut[0] = PlusToLast.Hour;
-                    HourAndMinut[1] = PlusToLast.Minute;
+                    TurnHour = PlusToLast.Hour;
+                    TurnMinute = PlusToLast.Minute;
 
-                    return HourAndMinut;
+                    TurnTime = new DateTime(DateFromCheckDate.Year, DateFromCheckDate.Month, DateFromCheckDate.Day,
+                        TurnHour, TurnMinute, 0);
+
+                    return TurnTime;
                 }
             }
         }
@@ -288,14 +266,14 @@ namespace GiveTurn.API.Repository
         {
             try
             {
-                var LastTurn = await _context.Turns.LastOrDefaultAsync();
+                var LastTurn = await _context.Turns.OrderByDescending(i => i.Id).FirstOrDefaultAsync();
                 if (LastTurn != null)
                 {
                     return LastTurn.UserTurnDate;
                 }
                 else
                 {
-                    return DateTime.MinValue;
+                    return DateTime.Now;
                 }
             }
 

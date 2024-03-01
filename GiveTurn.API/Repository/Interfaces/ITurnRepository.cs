@@ -6,7 +6,6 @@ namespace GiveTurn.API.Repository.Interfaces
     {
         Task<ICollection<Turn>> GetAllTurns();
         Task<DateTime> LastTurnDateTime();
-        Task<User> GetUserById(int Userid);
         Task<Turn> GetTurnById(int Turnid);
         Task<ICollection<Turn>> GetUserTurns(int Userid);
         Task<Turn> GetUserTurn(int Userid, int Turnid);
@@ -17,6 +16,6 @@ namespace GiveTurn.API.Repository.Interfaces
 
         Task<DateTime> GiveTurnDateTime();
         Task<DateTime> CheckDateForTurn();
-        int[] CheckTime(int TurnDay);
+        Task<DateTime> CheckTime();
     }
 }
