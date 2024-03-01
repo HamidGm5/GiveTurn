@@ -161,7 +161,7 @@ namespace GiveTurn.API.Repository
 
             catch
             {
-                return default(DateTime);
+                return DateTime.MinValue;           // Somthing Not Work and We are Have Problem Here
             }
         }
 
@@ -174,10 +174,11 @@ namespace GiveTurn.API.Repository
                 int TurnYear, TurnMonth, TurnDay;
                 DateTime TurnDateForReturn;
 
-                DateTime LastTurn = await LastTurnDateTime();
+                DateTime LastTurn = await LastTurnDateTime();           //Check For Max Value
                 var LastTurnDateTimeWithPlus = LastTurn.AddMinutes(25);
+                //var NowWithPlus = Now.AddMinutes(25);
 
-                if (LastTurnDateTimeWithPlus.Hour > 20)
+                if (LastTurnDateTimeWithPlus.Hour > 20)             //First Check Date Time Now With Last Turn 
                 {
                     var TurnDate = LastTurnDateTimeWithPlus.AddDays(1);
                     TurnYear = LastTurnDateTimeWithPlus.Year;
@@ -210,14 +211,11 @@ namespace GiveTurn.API.Repository
             DateTime Now = DateTime.Now;
             var DateFromCheckDate = await CheckDateForTurn();
             DateTime Time;                                       // Check it
-            DateTime TurnTime = Now;
+            DateTime TurnTime;
 
-            var ConvertDay = Convert.ToInt32(DateFromCheckDate.Day);
-            int TurnHour, TurnMinute = 0;
-            var LastTurn = await _context.Turns.Where(ut => ut.UserTurnDate.Day == ConvertDay).
-                                            OrderDescending().FirstOrDefaultAsync();
+            int TurnHour, TurnMinute;
 
-            if (LastTurn == null)
+            if (DateFromCheckDate == null)
             {
                 TurnTime = Now.AddMinutes(10);
                 TurnHour = TurnTime.Hour;
@@ -233,7 +231,7 @@ namespace GiveTurn.API.Repository
             {
                 var PlusNow = Now.AddMinutes(15);
                 var PlusNowToMili = new DateTimeOffset(PlusNow).ToUnixTimeMilliseconds();
-                var LastTurnToMili = new DateTimeOffset(LastTurn.UserTurnDate).ToUnixTimeMilliseconds();
+                var LastTurnToMili = new DateTimeOffset(DateFromCheckDate).ToUnixTimeMilliseconds();
 
                 if (PlusNowToMili > LastTurnToMili)
                 {
@@ -248,8 +246,8 @@ namespace GiveTurn.API.Repository
                 }
 
                 else
-                {
-                    var PlusToLast = LastTurn.UserTurnDate.AddMinutes(10);
+                {                                                   // Problem
+                    var PlusToLast = DateFromCheckDate.AddMinutes(10);
                     TurnHour = PlusToLast.Hour;
                     TurnMinute = PlusToLast.Minute;
 
