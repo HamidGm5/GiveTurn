@@ -161,7 +161,7 @@ namespace GiveTurn.API.Repository
 
             catch
             {
-                return DateTime.MinValue;           // Somthing Not Work and We are Have Problem Here
+                return DateTime.MinValue;          
             }
         }
 
@@ -174,13 +174,14 @@ namespace GiveTurn.API.Repository
                 int TurnYear, TurnMonth, TurnDay;
                 DateTime TurnDateForReturn;
 
-                DateTime LastTurn = await LastTurnDateTime();           //Check For Max Value
+                DateTime LastTurn = await LastTurnDateTime();         
 
                 if (LastTurn.Day >= Now.Day)
                 {
-                    TurnYear = LastTurn.Year;
-                    TurnMonth = LastTurn.Month;
-                    TurnDay = LastTurn.Day;
+                    DateTime LastTurnForReturn = LastTurn.AddMinutes(25);
+                    TurnYear = LastTurnForReturn.Year;
+                    TurnMonth = LastTurnForReturn.Month;
+                    TurnDay = LastTurnForReturn.Day;
 
                     TurnDateForReturn = new DateTime(TurnYear, TurnMonth, TurnDay, LastTurn.Hour, LastTurn.Minute, 0);
                     return TurnDateForReturn;
@@ -205,15 +206,15 @@ namespace GiveTurn.API.Repository
         public async Task<DateTime> CheckReserveDate()
         {
             DateTime ReserveDate = await CheckDateForTurn();
-            DateTime ReserveDateWithPlus = ReserveDate.AddMinutes(25);
             DateTime DateTimeForReturn;
 
-            if (ReserveDateWithPlus.Hour >= 20)
+            if (ReserveDate.Hour >= 20)
             {
-                DateTimeForReturn = ReserveDate.AddDays(1);
+                DateTimeForReturn = new DateTime(ReserveDate.Year, ReserveDate.Month, ReserveDate.AddDays(1).Day,
+                                                    8, 0, 0);
                 return DateTimeForReturn;
             }
-            else if (ReserveDateWithPlus.Hour < 8)
+            else if (ReserveDate.Hour < 8)
             {
                 DateTimeForReturn = new DateTime(ReserveDate.Year, ReserveDate.Month, ReserveDate.Day,
                                                     8, 0, 0);
@@ -225,32 +226,41 @@ namespace GiveTurn.API.Repository
             }
         }
 
-        public async Task<DateTime> CheckTime()
+        public async Task<DateTime> CheckTime()     
         {
             int Hour;
             int Minute;
+            DateTime NowDateTime = DateTime.Now;
+            DateTime NowDateTimePlus = NowDateTime.AddMinutes(25);
             DateTime ReserveDate = await CheckReserveDate();
             DateTime LastTurn = await LastTurnDateTime();
+            DateTime LastTurnPlus = LastTurn.AddMinutes(25);
             DateTime DateTimeForReturn;
 
+            var NowDateTimeToMili = new DateTimeOffset(NowDateTimePlus).ToUnixTimeMilliseconds();
+            var LastDateTimeToMili = new DateTimeOffset(LastTurnPlus).ToUnixTimeMilliseconds();
             try
             {
-                var NowPlusToMili = new DateTimeOffset(DateTime.Now.AddMinutes(25)).ToUnixTimeMilliseconds();
-                var LastToMili = new DateTimeOffset(LastTurn).ToUnixTimeMilliseconds();
-
-                if (LastToMili > NowPlusToMili)
+                if (NowDateTimeToMili < LastDateTimeToMili)
                 {
-                    DateTime NextLastTurn = LastTurn.AddMinutes(25);
-                    DateTimeForReturn = new DateTime(NextLastTurn.Year, NextLastTurn.Month, NextLastTurn.Day,
-                                                        NextLastTurn.Hour, NextLastTurn.Minute, 0);
-                    return DateTimeForReturn;
+                    if (LastTurnPlus.Hour < 20)
+                    {
+                        DateTimeForReturn = new DateTime(ReserveDate.Year, ReserveDate.Month, ReserveDate.Day,
+                                                            LastTurnPlus.Hour, LastTurnPlus.Minute, 0);
+                        return DateTimeForReturn;
+                    }
+                    else
+                    {
+                        DateTimeForReturn = new DateTime(ReserveDate.Year, ReserveDate.Month, ReserveDate.Day,
+                                          8, 0, 0);
+                        return DateTimeForReturn;
+                    }
                 }
                 else
                 {
-                    DateTime ReserveDateWithPlus = ReserveDate.AddMinutes(25);
-                    DateTimeForReturn = new DateTime(ReserveDateWithPlus.Year, ReserveDateWithPlus.Month, ReserveDateWithPlus.Day,
-                                                        ReserveDateWithPlus.Hour, ReserveDateWithPlus.Minute, 0);
-                    return ReserveDateWithPlus;
+                    DateTimeForReturn = new DateTime(ReserveDate.Year, ReserveDate.Month, ReserveDate.Day,
+                                                NowDateTimePlus.Hour , NowDateTimePlus.Minute , 0);
+                    return DateTimeForReturn;
                 }
             }
 
@@ -282,5 +292,23 @@ namespace GiveTurn.API.Repository
             }
         }
 
+        public async Task<bool> DeleteAllTurns()
+        {
+            try
+            {
+                var AllTurns = await _context.Turns.ToListAsync();
+                foreach (var itemt in AllTurns)
+                {
+                    _context.Turns.Remove(itemt);
+                }
+                await _context.SaveChangesAsync();
+                return true;
+            }
+
+            catch
+            {
+                return false;
+            }
+        }
     }//Class
 }

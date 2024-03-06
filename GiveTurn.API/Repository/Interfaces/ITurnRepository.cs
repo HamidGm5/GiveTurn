@@ -12,7 +12,7 @@ namespace GiveTurn.API.Repository.Interfaces
         Task<Turn> AddTurns(Turn turn);
         Task<Turn> Update(int Turnid, Turn UserTurn);
         Task<bool> Delete(int Turnid);
-
+        Task<bool> DeleteAllTurns();
 
         Task<DateTime> GiveTurnDateTime();
         Task<DateTime> CheckDateForTurn();

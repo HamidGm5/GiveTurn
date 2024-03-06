@@ -191,5 +191,19 @@ namespace GiveTurn.API.Controllers
                 return BadRequest();
             }
         }
+
+        [HttpDelete(Name = "DeleteAllTurns")]
+        public async Task<ActionResult<TurnDto>> DeleteAllTurns()
+        {
+            var DeleteTurns = await _repository.DeleteAllTurns();
+            if (DeleteTurns == true)
+            {
+                return Ok("Success");
+            }
+            else
+            {
+                return BadRequest();
+            }
+        }
     }
 }
