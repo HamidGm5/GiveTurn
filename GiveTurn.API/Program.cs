@@ -34,6 +34,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+app.UseCors(privacy => privacy.WithOrigins("http://localhost:7002", "https://localhost:7002").AllowAnyMethod().WithHeaders());
+
 app.UseAuthorization();
 
 app.MapControllers();
