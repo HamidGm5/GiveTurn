@@ -1,28 +1,132 @@
 ﻿using GiveTurn.Blazor.Services.Interfaces;
 using GiveTurn.Models.Dto;
+using System.Net.Http.Json;
 
 namespace GiveTurn.Blazor.Services
 {
     public class TurnServices : ITurnServices
     {
-        public Task<TurnDto> DeleteTurn(int TurnId)
+        private readonly HttpClient _client;
+
+        public TurnServices(HttpClient client)
         {
-            throw new NotImplementedException();
+            _client = client;
         }
 
-        public Task<TurnDto> GetAddNewTurn(TurnDto turn)
+        public async Task<TurnDto> DeleteTurn(int TurnId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var Response = await _client.DeleteAsync($"api/Turn/{TurnId}");
+                if (Response.IsSuccessStatusCode)
+                {
+                    if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return await Response.Content.ReadFromJsonAsync<TurnDto>();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    var Message = await Response.Content.ReadAsStringAsync();
+                    throw new Exception($"Error Message is : {Message} and Status Code is : {Response.StatusCode}");
+                }
+            }
+
+            catch
+            {
+                return null;
+            }
         }
 
-        public Task<TurnDto> GetUserTurn(int Userid, int TurnId)
+        public async Task<TurnDto> AddNewTurn(TurnDto turn, int Userid)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var Response = await _client.PostAsJsonAsync<TurnDto>($"api/Turn/{Userid}", turn);
+                if (Response.IsSuccessStatusCode)
+                {
+                    if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return await Response.Content.ReadFromJsonAsync<TurnDto>();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    var Message = await Response.Content.ReadAsStringAsync();
+                    throw new Exception($"Error Message is : {Message} and Status Code is : {Response.StatusCode}");
+                }
+            }
+
+            catch
+            {
+                return null;
+            }
         }
 
-        public Task<ICollection<TurnDto>> GetUserTurns(int Userid)
+        public async Task<TurnDto> GetUserTurn(int Userid, int TurnId)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var Response = await _client.GetAsync($"api/Turn/{Userid}/{TurnId}");
+                if (Response.IsSuccessStatusCode)
+                {
+                    if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return await Response.Content.ReadFromJsonAsync<TurnDto>();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    var Message = await Response.Content.ReadAsStringAsync();
+                    throw new Exception($"Error Message is : {Message} and Status Code is : {Response.StatusCode}");
+                }
+            }
+
+            catch
+            {
+                return null;
+            }
+        }
+
+        public async Task<ICollection<TurnDto>> GetUserTurns(int Userid)
+        {
+            try
+            {
+                var Response = await _client.GetAsync($"api/Turn/{Userid}");
+                if (Response.IsSuccessStatusCode)
+                {
+                    if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return await Response.Content.ReadFromJsonAsync<ICollection<TurnDto>>();
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    var Message = await Response.Content.ReadAsStringAsync();
+                    throw new Exception($"Error Message is : {Message} and Status Code is : {Response.StatusCode}");
+                }
+            }
+
+            catch
+            {
+                return null;
+            }
         }
     }
 }
