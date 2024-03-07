@@ -1,3 +1,4 @@
+using Blazored.Toast;
 using GiveTurn.Blazor;
 using GiveTurn.Blazor.Services;
 using GiveTurn.Blazor.Services.Interfaces;
@@ -10,6 +11,8 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 
 builder.Services.AddScoped<ITurnServices, TurnServices>();
 builder.Services.AddScoped<IUserServices, UserServices>();
+
+builder.Services.AddBlazoredToast();
 
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri("https://localhost:7251/") });
 

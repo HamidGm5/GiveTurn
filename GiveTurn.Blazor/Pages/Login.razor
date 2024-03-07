@@ -1,0 +1,26 @@
+﻿@page "/Login"
+@inherits LoginBase
+
+<div class="content">
+    <h2 class="Title">
+        Login
+    </h2>
+
+    <h3>
+        Enter Your Username :
+    </h3>
+    <input @bind="@Username" class="input" />
+
+    <br />
+    <h3>
+        Enter Your Password :
+    </h3>
+    <input @bind="@Password" class="input" type="password" />
+
+    <br />
+    <br />
+
+    <button @onclick="()=> Login_Click()" class="btn btn-success">Login</button>
+
+
+</div>

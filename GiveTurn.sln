@@ -7,7 +7,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiveTurn.API", "GiveTurn.AP
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiveTurn.Models", "GiveTurn.Models\GiveTurn.Models.csproj", "{4E5ED66F-B69D-4448-B218-79E4A6522400}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GiveTurn.Blazor", "GiveTurn.Blazor\GiveTurn.Blazor.csproj", "{D7C3605F-F9F1-4BF7-9ACB-E89CDF7C7B41}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GiveTurn.Blazor", "GiveTurn.Blazor\GiveTurn.Blazor.csproj", "{D7C3605F-F9F1-4BF7-9ACB-E89CDF7C7B41}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
