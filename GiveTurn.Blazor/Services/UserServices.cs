@@ -1,28 +1,136 @@
 ﻿using GiveTurn.Blazor.Services.Interfaces;
 using GiveTurn.Models.Dto;
+using Newtonsoft.Json;
+using System.Net.Http.Json;
+using System.Text;
 
 namespace GiveTurn.Blazor.Services
 {
     public class UserServices : IUserServices
     {
-        public Task<UserDto> DeleteUser(int Userid)
+        private readonly HttpClient _client;
+
+        public UserServices(HttpClient client)
         {
-            throw new NotImplementedException();
+            _client = client;
         }
 
-        public Task<UserDto> Login(string username, string password)
+        public async Task<UserDto> DeleteUser(int Userid)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var Response = await _client.DeleteAsync($"api/User/{Userid}");
+
+                if (Response.IsSuccessStatusCode)
+                {
+                    if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return null;
+                    }
+                    return await Response.Content.ReadFromJsonAsync<UserDto>();
+                }
+                else
+                {
+                    var Message = Response.Content.ReadAsStringAsync();
+                    throw new Exception($"Error Message is : {Message} and Status Code is : {Response.StatusCode}");
+                }
+            }
+
+            catch
+            {
+                throw;
+            }
         }
 
-        public Task<UserDto> SignUp(UserDto newuser)
+        public async Task<UserDto> Login(string username, string password)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var Response = await _client.GetAsync($"api/User/{username}/{password}");
+
+                if (Response.IsSuccessStatusCode)
+                {
+                    if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return await Response.Content.ReadFromJsonAsync<UserDto>();
+                    }
+                }
+                else
+                {
+                    var Message = await Response.Content.ReadAsStringAsync();
+                    throw new Exception($"The Error Message is : {Message} and Status Code is {Response.StatusCode}");
+                }
+            }
+
+            catch
+            {
+                return null;
+            }
         }
 
-        public Task<UserDto> UpdateUser(UserDto newSpec)
+        public async Task<UserDto> SignUp(UserDto newuser)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var Response = await _client.PostAsJsonAsync<UserDto>($"api/User", newuser);
+                if (Response.IsSuccessStatusCode)
+                {
+                    if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return await Response.Content.ReadFromJsonAsync<UserDto>();
+                    }
+                }
+                else
+                {
+                    var Message = await Response.Content.ReadAsStringAsync();
+                    throw new Exception($"Error Message is {Message} and Status Code is : {Response.StatusCode}");
+                }
+            }
+
+            catch
+            {
+                return null;
+            }
+        }
+
+        public async Task<UserDto> UpdateUser(UserDto newSpec)
+        {
+            try
+            {
+                var JsonRequest = JsonConvert.SerializeObject(newSpec);
+                var Content = new StringContent(JsonRequest, Encoding.UTF8, "application/json-patch+json");
+                var Response = await _client.PutAsync($"api/User/{newSpec.Id}", Content);
+
+                if (Response.IsSuccessStatusCode)
+                {
+                    if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return null;
+                    }
+                    else
+                    {
+                        return await Response.Content.ReadFromJsonAsync<UserDto>();
+                    }
+                }
+                else
+                {
+                    var Message = await Response.Content.ReadAsStringAsync();
+                    throw new Exception($"Error Message is {Message} and Status Code is : {Response.StatusCode}");
+                }
+            }
+
+            catch
+            {
+                return null;
+            }
         }
     }
 }
