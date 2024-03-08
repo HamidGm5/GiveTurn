@@ -10,6 +10,8 @@ main {
     color: white;
     margin-left: 0;
     margin-top: 0;
+    background-color: black;
+    height:100%;
 }
 
 .sidebar {

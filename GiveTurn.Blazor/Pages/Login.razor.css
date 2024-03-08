@@ -1,0 +1,45 @@
+﻿.content {
+    background-color: rgb(90, 90, 90);
+    border-radius: 35px;
+    padding: 20px;
+    width: 80%;
+    margin-bottom: 14.7%;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.Title {
+    font-weight: bold;
+    font-size: 40px;
+    color: white;
+}
+
+h3 {
+    padding-top: 25px;
+    font-size: 35px;
+    font-family: 'Franklin Gothic Book';
+}
+
+.input {
+    margin-top: 15px;
+    width: 350px;
+    font-weight: 900;
+    font-size: 120%;
+    border-radius: 40px;
+}
+
+.loginbtn {
+    background-color: rgb(226, 191, 0);
+    color: rgb(109, 0, 156);
+    border-radius: 15px;
+    margin: 25px 10px 25px 10px;
+    font-size: 25px;
+    width: 15%;
+    transition: ease-in-out .3s;
+}
+
+    .loginbtn:hover {
+        background-color: rgb(109, 0, 156);
+        color: rgb(226, 191, 0);
+    }
