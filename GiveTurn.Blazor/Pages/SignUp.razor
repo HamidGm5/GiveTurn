@@ -1,0 +1,32 @@
+﻿@page "/SignUp"
+@inherits SignUpBase
+
+<div class="content">
+
+    <br />
+
+    <h1>
+        SignUp
+    </h1>
+
+    <h2>
+        Enter Your Username :
+    </h2>
+    <input @bind="Username" class="input" type="text" />
+
+    <h2>
+        Enter Your Password :
+    </h2>
+    <input @bind="Password" class="input" type="password" />
+
+    <h2>
+        Enter Your PhoneNumber :
+    </h2>
+
+    <input @bind="PhoneNumber" class="input" type="text" />
+
+    <br />
+    <br />
+
+    <button class="SignUpBtn" @onclick="()=> SignUpBtn_Click()"> SingUp </button>
+</div>

@@ -1,0 +1,41 @@
+﻿h1 {
+    margin: 20px 10px 20px 10px;
+}
+
+.content {
+    background-color: rgb(75, 75, 75);
+    border-radius: 35px;
+    width: 60%;
+    margin: 35px auto 80px auto;
+}
+
+h2 {
+    font-size: 2rem;
+    font-weight: 400;
+    font-family: 'Bookman Old Style';
+}
+
+.input {
+    width: 350px;
+    border-radius: 35px;
+    font-family: 'Bookman Old Style';
+    font-size: 120%;
+    font-weight: 900;
+    margin: 20px 10px;
+}
+
+.SignUpBtn {
+    background-color: rgb(179, 15, 15);
+    color: rgb(201, 201, 201);
+    margin: 25px 10px 25px 10px;
+    font-size: 1.5rem;
+    font-weight: 800;
+    border-radius: 23px;
+    padding: 10px 20px;
+    transition: ease-in-out .4s;
+}
+
+    .SignUpBtn:hover {
+        background-color: rgb(219, 219, 219);
+        color: rgb(179, 15, 15);
+    }
