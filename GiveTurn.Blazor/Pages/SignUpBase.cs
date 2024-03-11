@@ -3,7 +3,7 @@ using GiveTurn.Blazor.Services.Interfaces;
 using GiveTurn.Models.Dto;
 using Microsoft.AspNetCore.Components;
 
-namespace GiveTurn.Blazor.Pages
+namespace GiveTurn.Web.Pages
 {
     public class SignUpBase : ComponentBase
     {
@@ -78,5 +78,5 @@ namespace GiveTurn.Blazor.Pages
             }
             return result;
         }
-    } // Class
+    }
 }

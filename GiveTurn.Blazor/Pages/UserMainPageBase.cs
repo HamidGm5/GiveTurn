@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace GiveTurn.Blazor.Pages
+namespace GiveTurn.Web.Pages
 {
     public class UserMainPageBase : ComponentBase
     {

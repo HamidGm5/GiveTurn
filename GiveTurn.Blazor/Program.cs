@@ -1,5 +1,5 @@
 using Blazored.Toast;
-using GiveTurn.Blazor;
+using GiveTurn.Web;
 using GiveTurn.Blazor.Services;
 using GiveTurn.Blazor.Services.Interfaces;
 using Microsoft.AspNetCore.Components.Web;
