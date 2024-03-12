@@ -25,6 +25,9 @@ namespace GiveTurn.API.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<ICollection<TurnDto>>> GetAllTurns()
         {
             try
@@ -48,6 +51,9 @@ namespace GiveTurn.API.Controllers
         }
 
         [HttpGet("{Userid:int}", Name = "GetUsersTurn")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<ICollection<TurnDto>>> GetUserTurns(int Userid)
         {
             try
@@ -78,6 +84,9 @@ namespace GiveTurn.API.Controllers
         }
 
         [HttpGet("{Userid:int}/{id:int}", Name = "GetUserTurn")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<TurnDto>> GetUserTurn(int Userid, int id)
         {
             try
@@ -107,6 +116,9 @@ namespace GiveTurn.API.Controllers
         }
 
         [HttpPost("{Userid:int}", Name = "AddNewTurn")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<TurnDto>> AddNewTurn([FromBody] TurnDto newturn, int Userid)
         {
             try
@@ -132,6 +144,9 @@ namespace GiveTurn.API.Controllers
         }
 
         [HttpPatch("{id:int}", Name = "UpdateTurn")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<TurnDto>> UpdateTurn([FromBody] TurnDto UpdateTurn, int id)
         {
             try
@@ -164,6 +179,9 @@ namespace GiveTurn.API.Controllers
         }
 
         [HttpDelete("{id:int}", Name = "DeleteTurn")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<TurnDto>> DeleteTurn(int id)
         {
             try
@@ -193,6 +211,8 @@ namespace GiveTurn.API.Controllers
         }
 
         [HttpDelete(Name = "DeleteAllTurns")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
         public async Task<ActionResult<TurnDto>> DeleteAllTurns()
         {
             var DeleteTurns = await _repository.DeleteAllTurns();

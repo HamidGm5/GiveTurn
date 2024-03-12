@@ -1,0 +1,23 @@
+﻿@code {
+    [Parameter]
+    public ICollection<TurnDto> UserTurns { get; set; }
+}
+
+<table>
+    <thead>
+        <tr>
+            <th> Turn Date </th>
+        </tr>
+    </thead>
+
+    <tbody>
+        @foreach (var item in UserTurns)
+        {
+            <tr>
+                <td>
+                    @item.UserTurnDate.ToString("dd - MM - yyyy  hh:mm tt")
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

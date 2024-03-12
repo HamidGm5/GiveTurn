@@ -1,6 +1,25 @@
 ﻿@page "/UserMainPage/{Username}/{Password}"
 @inherits UserMainPageBase
 
-<h2>
-    Wellcome @Username
-</h2>
+
+@if (User == null && Turns == null)
+{
+    <SpinnerDisplay />
+}
+else if(ErrorMessage != null)
+{
+    <h2 style="color:red;font-weight:bolder;font-size:2rem;text-align:center;">
+        @ErrorMessage
+    </h2>
+}
+else
+{
+    <div class="area">
+        <div class="title">
+            Wellcome @Username
+        </div>
+        <div class="turns">
+            <TurnsDisplay UserTurns="Turns"></TurnsDisplay>
+        </div>
+    </div>
+}

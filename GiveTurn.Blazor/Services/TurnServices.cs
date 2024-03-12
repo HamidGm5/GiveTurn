@@ -109,11 +109,12 @@ namespace GiveTurn.Blazor.Services
                 {
                     if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)
                     {
-                        return await Response.Content.ReadFromJsonAsync<ICollection<TurnDto>>();
+                        return null;
                     }
                     else
                     {
-                        return null;
+                        return await Response.Content.ReadFromJsonAsync<ICollection<TurnDto>>();
+
                     }
                 }
                 else

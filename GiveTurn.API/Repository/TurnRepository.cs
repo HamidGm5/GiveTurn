@@ -114,15 +114,21 @@ namespace GiveTurn.API.Repository
 
         public async Task<ICollection<Turn>> GetUserTurns(int Userid)
         {
-            var User = await _context.Users.Where(ui => ui.Id == Userid).FirstOrDefaultAsync();
-
-            if (User == null)
+            try
+            {
+                bool UserExist = await _context.Users.Where(ui => ui.Id == Userid).AnyAsync();
+                if(!UserExist)
+                {
+                    return null;
+                }   
+                else
+                {
+                    return await _context.Turns.Where(ut => ut.User.Id == Userid).ToListAsync();
+                }
+            }
+            catch
             {
                 return null;
-            }
-            else
-            {
-                return await _context.Turns.Where(ut => ut.User == User).ToListAsync();
             }
         }
 
