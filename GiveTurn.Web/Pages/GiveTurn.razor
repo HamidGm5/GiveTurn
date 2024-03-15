@@ -1,0 +1,22 @@
+﻿@page "/GiveTurn"
+@inherits GiveTurnBase
+
+@if (TurnDateTime == DateTime.MinValue)
+{
+    <SpinnerDisplay />
+}
+
+else
+{
+    <div class="content">
+        <h2>
+            Give Turn Page
+        </h2>
+
+        <h4>
+            The last turn for you it's : @TurnDateTime.ToString("dd - MM - yyyy hh : mm tt")
+        </h4>
+    </div>
+
+}
+

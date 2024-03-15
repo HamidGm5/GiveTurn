@@ -1,8 +1,10 @@
-﻿@code {
+﻿@using global::GiveTurn.Models.Dto
+<h3>TurnDisplay</h3>
+
+@code {
     [Parameter]
     public ICollection<TurnDto> UserTurns { get; set; }
 }
-
 <table>
     <thead>
         <tr>

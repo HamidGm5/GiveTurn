@@ -1,13 +1,12 @@
 ﻿using Blazored.Toast.Services;
 using GiveTurn.Blazor.Services.Interfaces;
-using GiveTurn.Models.Dto;
 using Microsoft.AspNetCore.Components;
-using Microsoft.JSInterop;
 
-namespace GiveTurn.Blazor
+namespace GiveTurn.Web.Pages
 {
     public class LoginBase : ComponentBase
     {
+
         public string Username { get; set; }
         public string Password { get; set; }
 
@@ -35,8 +34,8 @@ namespace GiveTurn.Blazor
                 else
                 {
                     var User = await UserServices.Login(Username, Password);
-                
-                    if (User == null) 
+
+                    if (User == null)
                     {
                         Toast.ShowError("Please Enter a correct username and password");
                     }
@@ -49,7 +48,7 @@ namespace GiveTurn.Blazor
                 }
             }
 
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 ErrorMessage = ex.Message;
                 Toast.ShowError(ErrorMessage);

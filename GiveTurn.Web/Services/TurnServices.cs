@@ -129,5 +129,35 @@ namespace GiveTurn.Blazor.Services
                 return null;
             }
         }
+
+        public async Task<DateTime> GetTurnDateTime()
+        {
+            try
+            {
+                var Response = await _client.GetAsync($"api/Turn");
+                if (Response.IsSuccessStatusCode)
+                {
+                    if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    {
+                        return DateTime.MinValue;
+                    }
+                    else
+                    {
+                        return await Response.Content.ReadFromJsonAsync<DateTime>();
+                    }
+                }
+                else
+                {
+                    var Message = await Response.Content.ReadAsStringAsync();
+                    throw new Exception($"You have Error with this message : {Message} " +
+                        $", and with : {Response.StatusCode} Status Code");
+                }
+            }
+
+            catch
+            {
+                return DateTime.MinValue;
+            }
+        }
     }
 }

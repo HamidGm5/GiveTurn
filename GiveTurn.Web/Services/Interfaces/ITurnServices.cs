@@ -4,6 +4,7 @@ namespace GiveTurn.Blazor.Services.Interfaces
 {
     public interface ITurnServices
     {
+        Task<DateTime> GetTurnDateTime();
         Task<ICollection<TurnDto>> GetUserTurns(int Userid);
         Task<TurnDto> GetUserTurn(int Userid, int TurnId);
         Task<TurnDto> AddNewTurn(TurnDto turn , int Userid);
