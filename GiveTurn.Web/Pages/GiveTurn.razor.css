@@ -1,1 +1,46 @@
-﻿
+﻿.title {
+    font-size: 2rem;
+    margin: 25px 0 25px 0;
+}
+
+.btnsbox {
+    padding-top: 20px;
+    margin-bottom: 31.8%;
+}
+
+.time{
+    color : rgb(197, 130, 0);
+    padding-top : 15px;
+}
+
+.Backbtn {
+    background-color: red;
+    color: black;
+    width: 7%;
+    font-size: 1.5rem;
+    font-family: 'Bookman Old Style';
+    border-radius: 15px;
+    transition: ease-in-out .4s;
+}
+
+.Backbtn:hover {
+    background-color: darkred;
+    color: white;
+    width: 9%;
+}
+
+.Setbtn {
+    background-color: green;
+    color: white;
+    font-size: 1.5rem;
+    font-family: 'Bookman Old Style';
+    width: 7%;
+    border-radius: 15px;
+    transition: ease-in-out .4s;
+}
+
+.Setbtn:hover {
+    background-color: lightgreen;
+    color: black;
+    width: 9%;
+}

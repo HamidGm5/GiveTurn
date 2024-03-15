@@ -1,22 +1,46 @@
-﻿@page "/GiveTurn"
+﻿@page "/GiveTurn/{Username}/{Password}"
 @inherits GiveTurnBase
 
-@if (TurnDateTime == DateTime.MinValue)
+@if (TurnDateTime == DateTime.MinValue && User == null && ErrorMessage == null)
 {
     <SpinnerDisplay />
 }
 
+else if (ErrorMessage != null)
+{
+    <h2 class="text-danger">
+        @ErrorMessage
+    </h2>
+}
+
 else
 {
+    <div class="area">
+        <h2 class="title">
+            Give Turn
+        </h2>
+    </div>
     <div class="content">
+        <h4>
+            The last turn for you it's : <h3 class="time"> @TurnDateTime.ToString("dd - MM - yyyy hh : mm tt") </h3>
+        </h4>
+
+        <br />
+        <br />
         <h2>
-            Give Turn Page
+            if you want the turn click on <span class="text-success">Yes</span> 
+                    or if you don't want click on <span class="text-danger">No</span>
         </h2>
 
-        <h4>
-            The last turn for you it's : @TurnDateTime.ToString("dd - MM - yyyy hh : mm tt")
-        </h4>
+        <div class="btnsbox">
+            <button class="Setbtn" @onclick="() => SetTurn_Click()">
+                Yes
+            </button>
+
+            <button class="Backbtn" @onclick="()=> GetBack()">
+                No
+            </button>
+        </div>
     </div>
 
 }
-

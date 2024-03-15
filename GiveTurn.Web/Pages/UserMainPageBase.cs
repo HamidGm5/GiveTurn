@@ -18,7 +18,8 @@ namespace GiveTurn.Web.Pages
         public ITurnServices TurnServices { get; set; }
         [Inject]
         public IToastService Toast { get; set; }
-
+        [Inject]
+        public NavigationManager Navigate { get; set; }
         public UserDto User { get; set; }
         public ICollection<TurnDto> Turns { get; set; }
         public string ErrorMessage { get; set; }
@@ -33,7 +34,7 @@ namespace GiveTurn.Web.Pages
                 Turns = await TurnServices.GetUserTurns(User.Id);
                 foreach (var turn in Turns)
                 {
-                    if (turn.UserTurnDate.Day == Now.Day && turn.UserTurnDate.Hour < Now.Hour)
+                    if (turn.UserTurnDate < Now.AddHours(24) && turn.UserTurnDate > Now)
                     {
                         IsTurnToday = true;
                         TodayTurn = turn.UserTurnDate;
@@ -49,6 +50,12 @@ namespace GiveTurn.Web.Pages
             {
                 ErrorMessage = ex.Message;
             }
+        }
+
+        public async void GoToGiveTurnPage_Click()
+        {
+            string GiveTurnUrl = $"GiveTurn/{Username}/{Password}";
+            Navigate.NavigateTo(GiveTurnUrl);
         }
     }
 }

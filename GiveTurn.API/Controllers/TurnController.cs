@@ -33,7 +33,7 @@ namespace GiveTurn.API.Controllers
             try
             {
                 DateTime TurnTime = await _repository.GiveTurnDateTime();
-                if(TurnTime !=  DateTime.MinValue) 
+                if (TurnTime != DateTime.MinValue)
                 {
                     return Ok(TurnTime);
                 }
@@ -126,7 +126,6 @@ namespace GiveTurn.API.Controllers
                 {
                     var TurnMap = _mapper.Map<Turn>(newturn);
                     TurnMap.User = await _userRepository.GetUserById(Userid);
-                    TurnMap.UserTurnDate = await _repository.GiveTurnDateTime();
                     await _repository.AddTurns(TurnMap);
                     return Ok(newturn);
                 }
