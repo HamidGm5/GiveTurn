@@ -28,25 +28,24 @@ namespace GiveTurn.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<ICollection<TurnDto>>> GetAllTurns()
+        public async Task<ActionResult<DateTime>> ShowLastTime()
         {
             try
             {
-                var Turns = await _repository.GetAllTurns();
-
-                if (Turns != null)
+                DateTime TurnTime = await _repository.GiveTurnDateTime();
+                if(TurnTime !=  DateTime.MinValue) 
                 {
-                    return Ok(Turns);
+                    return Ok(TurnTime);
                 }
                 else
                 {
-                    return NotFound();
+                    return BadRequest();
                 }
             }
 
             catch
             {
-                return BadRequest();
+                return NotFound();
             }
         }
 

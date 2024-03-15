@@ -22,13 +22,27 @@ namespace GiveTurn.Web.Pages
         public UserDto User { get; set; }
         public ICollection<TurnDto> Turns { get; set; }
         public string ErrorMessage { get; set; }
-
+        public DateTime TodayTurn { get; set; }
+        public bool IsTurnToday { get; set; } = false;
         protected override async Task OnParametersSetAsync()
         {
             try
             {
+                DateTime Now = DateTime.Now;
                 User = await UserServices.Login(Username, Password);
                 Turns = await TurnServices.GetUserTurns(User.Id);
+                foreach (var turn in Turns)
+                {
+                    if (turn.UserTurnDate.Day == Now.Day && turn.UserTurnDate.Hour < Now.Hour)
+                    {
+                        IsTurnToday = true;
+                        TodayTurn = turn.UserTurnDate;
+                    }
+                    else
+                    {
+                        IsTurnToday = false;
+                    }
+                }
             }
 
             catch (Exception ex)

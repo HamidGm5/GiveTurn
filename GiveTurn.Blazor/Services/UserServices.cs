@@ -72,14 +72,14 @@ namespace GiveTurn.Blazor.Services
             }
         }
 
-        public async Task<UserDto> SignUp(UserDto newuser)
+        public async Task<UserDto> SignUp(UserDto newuser)  //Bug It's not take response of controller
         {
             try
             {
-                var Response = await _client.PostAsJsonAsync<UserDto>($"api/User", newuser);
+                var Response = await _client.PostAsJsonAsync<UserDto>($"api/User" , newuser);
                 if (Response.IsSuccessStatusCode)
                 {
-                    if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    if(Response.StatusCode == System.Net.HttpStatusCode.NoContent)
                     {
                         return null;
                     }
@@ -91,7 +91,7 @@ namespace GiveTurn.Blazor.Services
                 else
                 {
                     var Message = await Response.Content.ReadAsStringAsync();
-                    throw new Exception($"Error Message is {Message} and Status Code is : {Response.StatusCode}");
+                    throw new Exception($"You have error and message is : {Message} and status code is : {Response.StatusCode}");
                 }
             }
 

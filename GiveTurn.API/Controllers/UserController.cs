@@ -99,7 +99,7 @@ namespace GiveTurn.API.Controllers
             }
         }
 
-        [HttpPost(Name = "SignUp")]
+        [HttpPost(Name ="SignUp")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
 

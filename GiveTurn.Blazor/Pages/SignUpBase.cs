@@ -38,7 +38,7 @@ namespace GiveTurn.Web.Pages
                 }
                 else
                 {
-                    NewUser = new UserDto()
+                    NewUser = new UserDto
                     {
                         Username = Username,
                         Password = Password,

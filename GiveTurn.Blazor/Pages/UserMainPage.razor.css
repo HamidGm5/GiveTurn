@@ -1,26 +1,11 @@
-﻿.main {
-    width: 90.3%;
-    margin-left: 0;
-    background-color: #555;
+﻿.title {
+    margin: 0;
+    padding-top: 20px;
+}
+
+.content {
     height: 100%;
-    color: rgb(204, 204, 204);
-    bottom: 0;
-    width: 100%;
-}
-
-p {
-    padding-left: 230px;
-    padding-bottom: 20px;
-    text-align: justify;
-}
-
-.title {
-    padding-top: 15px;
-    font-size: 2rem;
-}
-
-hr {
-    color: white;
+    width: 80%;
 }
 
 .sidebar {
@@ -39,7 +24,7 @@ hr {
         padding: 16px;
         text-decoration: none;
         font-family: 'Bookman Old Style';
-        font-size : 1.2rem;
+        font-size: 1.2rem;
     }
 
         .sidebar a.active {

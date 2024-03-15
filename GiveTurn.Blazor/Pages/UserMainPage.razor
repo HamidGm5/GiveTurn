@@ -6,7 +6,7 @@
 {
     <SpinnerDisplay />
 }
-else if(ErrorMessage != null)
+else if (ErrorMessage != null)
 {
     <h2 style="color:red;font-weight:bolder;font-size:2rem;text-align:center;">
         @ErrorMessage
@@ -15,11 +15,32 @@ else if(ErrorMessage != null)
 else
 {
     <div class="area">
-        <div class="title">
-            Wellcome @Username
+        <div class="sidebar">
+            <h2 class="title"> Give Turn </h2>
+            <hr />
+            <a href="/"><span class="oi oi-home"> Home </span></a>
+            <a href="/Login"><span class="oi oi-timer"> Give Turn </span></a>
+            <a href="/SignUp"><span class="oi oi-person"> Setting </span></a>
         </div>
-        <div class="turns">
-            <TurnsDisplay UserTurns="Turns"></TurnsDisplay>
+
+        <div class="content">
+            <div class="title">
+                <h2>
+                    Wellcome @Username
+                </h2>
+            </div>
+
+            @if (IsTurnToday)
+            {
+                <h2 class="TodayTurn">
+                    You have turn today in @TodayTurn.Hour : @TodayTurn.Minute
+                </h2>
+            }
+
+            <br />
+            <div class="turns">
+                <TurnsDisplay UserTurns="Turns"></TurnsDisplay>
+            </div>
         </div>
     </div>
 }
