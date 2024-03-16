@@ -13,11 +13,11 @@ namespace GiveTurn.Blazor.Services
             _client = client;
         }
 
-        public async Task<TurnDto> DeleteTurn(int TurnId)
+        public async Task<TurnDto> DeleteTurn(int Userid, int TurnId)
         {
             try
             {
-                var Response = await _client.DeleteAsync($"api/Turn/{TurnId}");
+                var Response = await _client.DeleteAsync($"api/Turn/{Userid}/{TurnId}");
                 if (Response.IsSuccessStatusCode)
                 {
                     if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)
@@ -46,7 +46,7 @@ namespace GiveTurn.Blazor.Services
         {
             try
             {
-                var Response = await _client.PostAsJsonAsync<AddTurnDto>($"api/Turn" , addTurn);
+                var Response = await _client.PostAsJsonAsync<AddTurnDto>($"api/Turn", addTurn);
                 if (Response.IsSuccessStatusCode)
                 {
                     if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)
@@ -157,6 +157,26 @@ namespace GiveTurn.Blazor.Services
             catch
             {
                 return DateTime.MinValue;
+            }
+        }
+
+        public async Task<TurnDto> DeleteAllUserTurns(int Userid)
+        {
+            var Response = await _client.DeleteAsync($"api/Turn/{Userid}");
+            if (Response.IsSuccessStatusCode)
+            {
+                if (Response.StatusCode != System.Net.HttpStatusCode.NoContent)
+                {
+                    return await Response.Content.ReadFromJsonAsync<TurnDto>();
+                }
+                else
+                {
+                    return default(TurnDto);
+                }
+            }
+            else
+            {
+                return null;
             }
         }
     }

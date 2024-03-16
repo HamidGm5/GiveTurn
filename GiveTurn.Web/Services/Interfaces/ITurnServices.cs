@@ -8,6 +8,7 @@ namespace GiveTurn.Blazor.Services.Interfaces
         Task<ICollection<TurnDto>> GetUserTurns(int Userid);
         Task<TurnDto> GetUserTurn(int Userid, int TurnId);
         Task<TurnDto> AddNewTurn(AddTurnDto addTurn);
-        Task<TurnDto> DeleteTurn(int TurnId);
+        Task<TurnDto> DeleteTurn(int Userid,int TurnId);
+        Task<TurnDto> DeleteAllUserTurns(int Userid);
     }
 }
