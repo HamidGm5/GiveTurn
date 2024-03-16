@@ -114,18 +114,18 @@ namespace GiveTurn.API.Controllers
             }
         }
 
-        [HttpPost("{Userid:int}", Name = "AddNewTurn")]
+        [HttpPost(Name = "AddNewTurn")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<TurnDto>> AddNewTurn([FromBody] TurnDto newturn, int Userid)
+        public async Task<ActionResult<TurnDto>> AddNewTurn([FromBody] AddTurnDto newturn)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
                     var TurnMap = _mapper.Map<Turn>(newturn);
-                    TurnMap.User = await _userRepository.GetUserById(Userid);
+                    TurnMap.User = await _userRepository.GetUserById(newturn.Userid);
                     await _repository.AddTurns(TurnMap);
                     return Ok(newturn);
                 }
@@ -176,17 +176,17 @@ namespace GiveTurn.API.Controllers
             }
         }
 
-        [HttpDelete("{id:int}", Name = "DeleteTurn")]
+        [HttpDelete("{Userid:int}/{Turnid:int}", Name = "DeleteTurn")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<TurnDto>> DeleteTurn(int id)
+        public async Task<ActionResult<TurnDto>> DeleteTurn(int Userid, int Turnid)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    bool DeletedTurn = await _repository.Delete(id);
+                    bool DeletedTurn = await _repository.Delete(Userid, Turnid);
                     if (DeletedTurn == true)
                     {
                         return Ok("Success");
@@ -208,12 +208,12 @@ namespace GiveTurn.API.Controllers
             }
         }
 
-        [HttpDelete(Name = "DeleteAllTurns")]
+        [HttpDelete("{Userid:int}", Name = "DeleteAllTurns")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
-        public async Task<ActionResult<TurnDto>> DeleteAllTurns()
+        public async Task<ActionResult<TurnDto>> DeleteAllTurns(int Userid)
         {
-            var DeleteTurns = await _repository.DeleteAllTurns();
+            var DeleteTurns = await _repository.DeleteAllUserTurns(Userid);
             if (DeleteTurns == true)
             {
                 return Ok("Success");

@@ -11,8 +11,8 @@ namespace GiveTurn.API.Repository.Interfaces
         Task<Turn> GetUserTurn(int Userid, int Turnid);
         Task<Turn> AddTurns(Turn turn);
         Task<Turn> Update(int Turnid, Turn UserTurn);
-        Task<bool> Delete(int Turnid);
-        Task<bool> DeleteAllTurns();
+        Task<bool> Delete(int Userid,int Turnid);
+        Task<bool> DeleteAllUserTurns(int Userid);
 
         Task<DateTime> GiveTurnDateTime();
         Task<DateTime> CheckDateForTurn();

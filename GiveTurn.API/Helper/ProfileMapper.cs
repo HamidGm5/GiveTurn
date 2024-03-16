@@ -12,6 +12,10 @@ namespace GiveTurn.API.Helper
             CreateMap<User, UserDto>();
             CreateMap<Turn, TurnDto>();
             CreateMap<TurnDto, Turn>();
+            CreateMap<TurnDto, AddTurnDto>();
+            CreateMap<AddTurnDto, TurnDto>();
+            CreateMap<AddTurnDto, Turn>();
+            CreateMap<Turn, AddTurnDto>();
         }
     }
 }

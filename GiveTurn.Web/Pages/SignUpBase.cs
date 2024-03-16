@@ -56,7 +56,7 @@ namespace GiveTurn.Web.Pages
                     }
                     else
                     {
-                        Toast.ShowError("Your Username befor taken !");
+                        Toast.ShowError("Your Username taken befor !");
                     }
                 }
             }

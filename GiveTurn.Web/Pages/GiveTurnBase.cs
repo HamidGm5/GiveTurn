@@ -24,7 +24,7 @@ namespace GiveTurn.Web.Pages
         public string UserMainPageUrl { get; set; }
         public DateTime TurnDateTime { get; set; }
         public UserDto User { get; set; }
-        public TurnDto UserTurn { get; set; }
+        public AddTurnDto UserTurn { get; set; }
         public string ErrorMessage { get; set; }
 
         protected override async Task OnParametersSetAsync()
@@ -36,9 +36,10 @@ namespace GiveTurn.Web.Pages
 
         public async void SetTurn_Click()
         {
-            UserTurn = new TurnDto
+            UserTurn = new AddTurnDto
             {
-                UserTurnDate = TurnDateTime
+                UserTurnDate = TurnDateTime,
+                Userid = User.Id,
             };
 
             if (User.HaveTurn)
@@ -47,7 +48,7 @@ namespace GiveTurn.Web.Pages
             }
             else
             {
-                var TunrResponse = await TurnServices.AddNewTurn(UserTurn, User.Id);
+                var TunrResponse = await TurnServices.AddNewTurn(UserTurn);
 
                 if (TunrResponse != null)
                 {

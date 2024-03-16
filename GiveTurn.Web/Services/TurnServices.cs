@@ -42,11 +42,11 @@ namespace GiveTurn.Blazor.Services
             }
         }
 
-        public async Task<TurnDto> AddNewTurn(TurnDto turn, int Userid)
+        public async Task<TurnDto> AddNewTurn(AddTurnDto addTurn)
         {
             try
             {
-                var Response = await _client.PostAsJsonAsync<TurnDto>($"api/Turn/{Userid}", turn);
+                var Response = await _client.PostAsJsonAsync<AddTurnDto>($"api/Turn" , addTurn);
                 if (Response.IsSuccessStatusCode)
                 {
                     if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)

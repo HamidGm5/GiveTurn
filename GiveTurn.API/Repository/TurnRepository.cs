@@ -51,11 +51,12 @@ namespace GiveTurn.API.Repository
         }
 
 
-        public async Task<bool> Delete(int Turnid)
+        public async Task<bool> Delete(int Userid, int Turnid)
         {
             try
             {
-                var FindTurn = await GetTurnById(Turnid);
+                var FindTurn = await _context.Turns.Where(ut => ut.Id == Turnid &&
+                                        ut.User.Id == Userid).FirstOrDefaultAsync();
 
                 if (FindTurn != null)
                 {
@@ -69,12 +70,12 @@ namespace GiveTurn.API.Repository
                 }
             }
 
+
             catch
             {
                 return false;
             }
         }
-
 
         public async Task<Turn> GetTurnById(int Turnid)
         {
@@ -117,10 +118,10 @@ namespace GiveTurn.API.Repository
             try
             {
                 bool UserExist = await _context.Users.Where(ui => ui.Id == Userid).AnyAsync();
-                if(!UserExist)
+                if (!UserExist)
                 {
                     return null;
-                }   
+                }
                 else
                 {
                     return await _context.Turns.Where(ut => ut.User.Id == Userid).ToListAsync();
@@ -167,7 +168,7 @@ namespace GiveTurn.API.Repository
 
             catch
             {
-                return DateTime.MinValue;          
+                return DateTime.MinValue;
             }
         }
 
@@ -180,7 +181,7 @@ namespace GiveTurn.API.Repository
                 int TurnYear, TurnMonth, TurnDay;
                 DateTime TurnDateForReturn;
 
-                DateTime LastTurn = await LastTurnDateTime();         
+                DateTime LastTurn = await LastTurnDateTime();
 
                 if (LastTurn.Day >= Now.Day)
                 {
@@ -232,7 +233,7 @@ namespace GiveTurn.API.Repository
             }
         }
 
-        public async Task<DateTime> CheckTime()     
+        public async Task<DateTime> CheckTime()
         {
             int Hour;
             int Minute;
@@ -265,7 +266,7 @@ namespace GiveTurn.API.Repository
                 else
                 {
                     DateTimeForReturn = new DateTime(ReserveDate.Year, ReserveDate.Month, ReserveDate.Day,
-                                                NowDateTimePlus.Hour , NowDateTimePlus.Minute , 0);
+                                                NowDateTimePlus.Hour, NowDateTimePlus.Minute, 0);
                     return DateTimeForReturn;
                 }
             }
@@ -298,11 +299,11 @@ namespace GiveTurn.API.Repository
             }
         }
 
-        public async Task<bool> DeleteAllTurns()
+        public async Task<bool> DeleteAllUserTurns(int Userid)
         {
             try
             {
-                var AllTurns = await _context.Turns.ToListAsync();
+                var AllTurns = await _context.Turns.Where(ut => ut.User.Id == Userid).ToListAsync();
                 foreach (var itemt in AllTurns)
                 {
                     _context.Turns.Remove(itemt);

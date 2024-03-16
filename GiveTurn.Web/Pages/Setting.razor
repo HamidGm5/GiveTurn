@@ -1,5 +1,25 @@
-﻿<h3>Setting</h3>
+﻿@page "/Setting/{Username}/{Password}"
+@inherits SettingBase
 
-@code {
+@if(User == null || ErrorMessage == null)
+{
+    <SpinnerDisplay />
+}
 
+else if(ErrorMessage != null)
+{
+    <h2 class="ErrorMessage">
+        @ErrorMessage
+    </h2>
+}
+
+else
+{
+    <div class="sidebar">
+        <h2 class="title"> Give Turn </h2>
+        <hr />
+        <a href="/"><span class="oi oi-info"> Change Your info </span></a>
+        <a href="/Login"><span class="oi oi-delete"> Delete Account </span></a>
+        <a href="/SignUp"><span class="oi oi-pencil"> Delete My Turns </span></a>
+    </div>
 }
