@@ -107,7 +107,7 @@ namespace GiveTurn.Blazor.Services
             {
                 var JsonRequest = JsonConvert.SerializeObject(newSpec);
                 var Content = new StringContent(JsonRequest, Encoding.UTF8, "application/json-patch+json");
-                var Response = await _client.PutAsync($"api/User/{newSpec.Id}", Content);
+                var Response = await _client.PatchAsync($"api/User/{newSpec.Id}", Content);
 
                 if (Response.IsSuccessStatusCode)
                 {

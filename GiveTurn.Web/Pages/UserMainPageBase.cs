@@ -57,5 +57,11 @@ namespace GiveTurn.Web.Pages
             string GiveTurnUrl = $"GiveTurn/{Username}/{Password}";
             Navigate.NavigateTo(GiveTurnUrl);
         }
+
+        public async void GoToSetting_Click()
+        {
+            string SettingUrl = $"/Setting/{Username}/{Password}";
+            Navigate.NavigateTo(SettingUrl);
+        }
     }
 }

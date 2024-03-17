@@ -1,0 +1,45 @@
+﻿@page "/UpdateUser/{Username}/{Password}"
+@inherits UpdateUserBase
+
+@if (User == null && ErrorMessage == null)
+{
+    <SpinnerDisplay />
+}
+else if (ErrorMessage != null)
+{
+    <h2 style="text-align:center;color:red;font-weight:bold;">
+        @ErrorMessage
+    </h2>
+}
+
+else
+{
+    <div class="area">
+        <div class="title">
+            <h1>
+                Update Specs
+            </h1>
+        </div>
+        <div class="content">
+            <h2 class="UpdatePart">
+                Write Your username : <input class="input" type="text" @bind="@ChangeUsername" />
+            </h2>
+
+            <h2 class="UpdatePart">
+                Write Your Password : <input class="input" type="password" @bind="@ChangePassword" />
+            </h2>
+
+            <h2 class="UpdatePart">
+                Write Your Confirm Password :  <input class="input" type="password" @bind="@ConfirmPassword" />
+            </h2>
+
+            <h2 class="UpdatePart">
+                Write Your Phone Number : <input class="input" type="text" @bind="@ChangePhoneNumber" />
+            </h2>
+
+            <a class="btn submitBtn" @onclick="() => Update_Click()">
+                Update Specs
+            </a>
+        </div>
+    </div>
+}

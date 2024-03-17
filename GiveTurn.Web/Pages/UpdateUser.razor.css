@@ -1,0 +1,38 @@
+﻿article {
+    height: 100%;
+}
+
+.area {
+    background-color: rgb(128, 128, 128);
+    height: 100%;
+    width: 55%;
+    margin: 50px auto 177px auto;
+    border-radius: 25px;
+}
+
+.title {
+    padding-top: 40px;
+    padding-bottom: 30px;
+}
+
+.UpdatePart {
+    padding-bottom: 25px;
+    text-transform: capitalize;
+    text-align: justify;
+    padding-left: 30px;
+}
+
+    .UpdatePart input {
+        border-radius: 20px;
+        width: 40%;
+        margin-left: 20px;
+    }
+
+.submitBtn {
+    width: 20%;
+    background-color: red;
+    font-family: 'Bookman Old Style';
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 20px;
+}

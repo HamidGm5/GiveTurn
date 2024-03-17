@@ -1,12 +1,12 @@
 ﻿@page "/Setting/{Username}/{Password}"
 @inherits SettingBase
 
-@if(User == null || ErrorMessage == null)
+@if (User == null && ErrorMessage == null)
 {
     <SpinnerDisplay />
 }
 
-else if(ErrorMessage != null)
+else if (ErrorMessage != null)
 {
     <h2 class="ErrorMessage">
         @ErrorMessage
@@ -15,11 +15,30 @@ else if(ErrorMessage != null)
 
 else
 {
-    <div class="sidebar">
-        <h2 class="title"> Give Turn </h2>
-        <hr />
-        <a href="/"><span class="oi oi-info"> Change Your info </span></a>
-        <a href="/Login"><span class="oi oi-delete"> Delete Account </span></a>
-        <a href="/SignUp"><span class="oi oi-pencil"> Delete My Turns </span></a>
+    <div class="area">
+        <div class="sidebar">
+            <h2 class="title"> Give Turn </h2>
+            <hr />
+            <a @onclick="()=> Update_Click()"><span class="oi oi-info"> Change Your info </span></a>
+            <a @onclick="() => DeleteTurns_Click()"><span class="oi oi-pencil"> Delete My Turns </span></a>
+            <a @onclick="() => DeleteAccount_Click()"><span class="oi oi-trash"> Delete Account </span></a>
+        </div>
+        <div class="spec">
+            <h2 class="specPartTitle">
+                Your Specs
+            </h2>
+
+            <h3 class="specPart">
+                Your Username : <input @bind="@User.Username" type="text" readonly />
+            </h3>
+
+            <h3 class="specPart">
+                Your Password : <input @bind="@User.Password" type="password" readonly />
+            </h3>
+
+            <h3 class="specPart">
+                Your Phone Number : <input @bind="@User.PhoneNumber" type="text" readonly />
+            </h3>
+        </div>
     </div>
 }

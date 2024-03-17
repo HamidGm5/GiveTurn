@@ -15,7 +15,11 @@ namespace GiveTurn.Web.Pages
         [Inject]
         public IUserServices UserServices { get; set; }
         [Inject]
+        public ITurnServices TurnServices { get; set; }
+        [Inject]
         public IToastService Toast { get; set; }
+        [Inject]
+        public NavigationManager Navigate { get; set; }
 
         public UserDto User { get; set; }
         public string ErrorMessage { get; set; }
@@ -24,10 +28,10 @@ namespace GiveTurn.Web.Pages
         {
             try
             {
-                User = await UserServices.Login(Username , Password);
+                User = await UserServices.Login(Username, Password);
             }
 
-            catch (Exception ex) 
+            catch (Exception ex)
             {
                 ErrorMessage = ex.Message;
             }
@@ -35,12 +39,36 @@ namespace GiveTurn.Web.Pages
 
         public async void Update_Click()
         {
-
+            string UpdateUserUrl = $"/UpdateUser/{Username}/{Password}";
+            Navigate.NavigateTo(UpdateUserUrl);
         }
 
-        public async void Delete_Click()
+        public async void DeleteTurns_Click()
         {
+            var DeleteTurns = await TurnServices.DeleteAllUserTurns(User.Id);
+            if (DeleteTurns != null)
+            {
+                Toast.ShowSuccess("Your Turns deleted successful");
+                Navigate.NavigateTo($"/UserMainPage/{Username}/{Password}");
+            }
+            else
+            {
+                Toast.ShowError("Somthing went wrong !");
+            }
+        }
 
+        public async void DeleteAccount_Click()
+        {
+            var DeleteUser = await UserServices.DeleteUser(User.Id);
+            if (DeleteUser != null)
+            {
+                Toast.ShowSuccess("Your account deleted successful");
+                Navigate.NavigateTo("/");
+            }
+            else
+            {
+                Toast.ShowError("Somthing went wrong !");
+            }
         }
     }
 }
