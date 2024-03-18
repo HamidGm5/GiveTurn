@@ -1,0 +1,38 @@
+﻿.area {
+    height: 100%;
+    background-color: rgb(90, 90, 90);
+    border-radius: 35px;
+    padding: 10px;
+    width: 80%;
+    margin-bottom: 306px;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.content {
+    padding: 30px;
+}
+
+.Title {
+    padding-bottom: 50px;
+    font-weight: bold;
+    font-size: 40px;
+    color: white;
+}
+
+.text-danger {
+    padding-bottom: 50px;
+    font-weight: bold;
+    font-family: 'Bookman Old Style';
+}
+
+.btndelete {
+    background-color: rgb(203, 0, 0);
+    color: black;
+    font-weight: bolder;
+    font-size: 1.4rem;
+    padding: 5px;
+    border-radius: 15px;
+    margin-bottom: 30px;
+}

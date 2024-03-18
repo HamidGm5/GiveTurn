@@ -70,7 +70,7 @@ namespace GiveTurn.Web.Pages
                         }
                         else
                         {
-                            Toast.ShowError("Somthing went wrong !");
+                            Toast.ShowError("Something went wrong !");
                         }
                     }
                     else
@@ -80,7 +80,7 @@ namespace GiveTurn.Web.Pages
                 }
                 else
                 {
-                    Toast.ShowError("Somthing went wrong !");
+                    Toast.ShowError("Something went wrong !");
                 }
             }
             catch (Exception ex)

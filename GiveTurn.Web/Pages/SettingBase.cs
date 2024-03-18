@@ -53,7 +53,7 @@ namespace GiveTurn.Web.Pages
             }
             else
             {
-                Toast.ShowError("Somthing went wrong !");
+                Toast.ShowError("Something went wrong !");
             }
         }
 
@@ -62,12 +62,12 @@ namespace GiveTurn.Web.Pages
             var DeleteUser = await UserServices.DeleteUser(User.Id);
             if (DeleteUser != null)
             {
-                Toast.ShowSuccess("Your account deleted successful");
+                Toast.ShowSuccess("Your account deleted successfully");
                 Navigate.NavigateTo("/");
             }
             else
             {
-                Toast.ShowError("Somthing went wrong !");
+                Toast.ShowError("Something went wrong !");
             }
         }
     }

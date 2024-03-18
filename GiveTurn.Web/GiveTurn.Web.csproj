@@ -17,4 +17,8 @@
     <ProjectReference Include="..\GiveTurn.Models\GiveTurn.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\JS\" />
+  </ItemGroup>
+
 </Project>

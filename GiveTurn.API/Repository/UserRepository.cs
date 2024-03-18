@@ -24,6 +24,12 @@ namespace GiveTurn.API.Repository
                 }
                 else
                 {
+                    var UserTurns = await _context.Turns.Where(ut => ut.User.Id == Userid).ToListAsync();
+                    foreach (var turn in UserTurns)
+                    {
+                        _context.Turns.Remove(turn);
+                        await _context.SaveChangesAsync();
+                    }
                     _context.Users.Remove(User);
                     await _context.SaveChangesAsync();
                     return true;

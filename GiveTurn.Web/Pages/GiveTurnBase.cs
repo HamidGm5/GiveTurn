@@ -59,7 +59,7 @@ namespace GiveTurn.Web.Pages
                 }
                 else
                 {
-                    Toast.ShowError("somthing went wrong , check again");
+                    Toast.ShowError("something went wrong , check again");
                 }
             }
         }

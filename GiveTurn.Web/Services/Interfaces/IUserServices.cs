@@ -7,6 +7,6 @@ namespace GiveTurn.Blazor.Services.Interfaces
         Task<UserDto> Login (string username, string password);
         Task<UserDto> SignUp(UserDto newuser);
         Task<UserDto> UpdateUser(UserDto newSpec);
-        Task<UserDto> DeleteUser(int Userid);
+        Task<bool> DeleteUser(int Userid);
     }
 }

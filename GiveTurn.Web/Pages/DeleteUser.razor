@@ -1,0 +1,20 @@
+﻿@page "/DeleteUser/{Username}/{Password}"
+@inherits DeleteUserBase
+
+<div class="area">
+    <div class="content">
+        <h2 class="Title">
+            Delete Account Page
+        </h2>
+        <h4 class="text-danger">
+            Be careful <span class="oi oi-warning"></span> because if you deleting your account the your Turns too deleted !
+        </h4>
+        <h5>
+            finally if you want delete your account Press the bottom button and for delete your account should use your password for confirm
+        </h5>
+    </div>
+
+    <button @onclick="@Prompt_Click" class="btndelete">
+        Delete my account
+    </button>
+</div>

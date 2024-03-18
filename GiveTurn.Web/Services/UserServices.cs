@@ -15,7 +15,7 @@ namespace GiveTurn.Blazor.Services
             _client = client;
         }
 
-        public async Task<UserDto> DeleteUser(int Userid)
+        public async Task<bool> DeleteUser(int Userid)
         {
             try
             {
@@ -25,9 +25,9 @@ namespace GiveTurn.Blazor.Services
                 {
                     if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)
                     {
-                        return null;
+                        return false;
                     }
-                    return await Response.Content.ReadFromJsonAsync<UserDto>();
+                    return true;
                 }
                 else
                 {
