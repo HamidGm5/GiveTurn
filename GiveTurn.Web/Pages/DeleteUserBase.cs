@@ -18,6 +18,8 @@ namespace GiveTurn.Web.Pages
         public IJSRuntime Js { get; set; }
         [Inject]
         public IToastService Toast { get; set; }
+        [Inject]
+        public NavigationManager Navigate { get; set; }
         public UserDto User { get; set; }
         public string ConfirmPassword { get; set; }
         public string ErrorMessage { get; set; }
@@ -31,10 +33,6 @@ namespace GiveTurn.Web.Pages
                 if (User == null)
                 {
                     Toast.ShowError("Something went wrong try again !");
-                }
-                else
-                {
-
                 }
             }
 
@@ -53,11 +51,11 @@ namespace GiveTurn.Web.Pages
                 if (deleteUser)
                 {
                     Toast.ShowInfo("Your Account was successfuly Deleted");
+                    Navigate.NavigateTo("/");
                 }
                 else
                 {
                 Toast.ShowError("Something Went Wrong");
-
                 }
             }
             else

@@ -59,16 +59,8 @@ namespace GiveTurn.Web.Pages
 
         public async void DeleteAccount_Click()
         {
-            var DeleteUser = await UserServices.DeleteUser(User.Id);
-            if (DeleteUser != null)
-            {
-                Toast.ShowSuccess("Your account deleted successfully");
-                Navigate.NavigateTo("/");
-            }
-            else
-            {
-                Toast.ShowError("Something went wrong !");
-            }
+            string DeleteUserUrl = $"/DeleteUser/{Username}/{Password}";
+            Navigate.NavigateTo(DeleteUserUrl);
         }
     }
 }
