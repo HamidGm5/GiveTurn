@@ -51,6 +51,7 @@ namespace GiveTurn.Web.Pages
                     if (AddUser != null)
                     {
                         Toast.ShowSuccess("You are SignUp With Success !");
+                        StateHasChanged();
                         UserMainPageUrl = $"/UserMainPage/{Username}/{Password}";
                         Navigation.NavigateTo(UserMainPageUrl);
                     }

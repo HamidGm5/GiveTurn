@@ -76,12 +76,12 @@ namespace GiveTurn.Blazor.Services
         {
             try
             {
-                var Response = await _client.PostAsJsonAsync<UserDto>($"api/User" , newuser);
+                var Response = await _client.PostAsJsonAsync<UserDto>($"api/User", newuser);
                 if (Response.IsSuccessStatusCode)
                 {
-                    if(Response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)
                     {
-                        return null;
+                        return default(UserDto);
                     }
                     else
                     {
@@ -95,7 +95,7 @@ namespace GiveTurn.Blazor.Services
                 }
             }
 
-            catch
+            catch (Exception ex)
             {
                 return null;
             }
