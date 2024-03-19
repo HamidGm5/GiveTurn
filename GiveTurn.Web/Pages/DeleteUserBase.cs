@@ -45,22 +45,30 @@ namespace GiveTurn.Web.Pages
         public async void Prompt_Click()
         {
             ConfirmPassword = await Js.InvokeAsync<string>("Prompting", "Enter Your Password :");
-            if (ConfirmPassword == User.Password)
+            if (User != null)
             {
-                bool deleteUser = await UserServices.DeleteUser(User.Id);
-                if (deleteUser)
+                if (ConfirmPassword == User.Password)
                 {
-                    Toast.ShowInfo("Your Account was successfuly Deleted");
-                    Navigate.NavigateTo("/");
+                    bool deleteUser = await UserServices.DeleteUser(User.Id);
+                    if (deleteUser)
+                    {
+                        Toast.ShowInfo("Your Account was successfuly Deleted");
+                        Navigate.NavigateTo("/");
+                    }
+                    else
+                    {
+                        Toast.ShowError("Something Went Wrong");
+                        Navigate.NavigateTo("/");
+                    }
                 }
                 else
                 {
-                Toast.ShowError("Something Went Wrong");
+                    Toast.ShowError("Your password is incorrect");
                 }
             }
             else
             {
-                Toast.ShowError("Your password is incorrect");
+                ErrorMessage = "You are delete your account in past !";
             }
         }
     }
