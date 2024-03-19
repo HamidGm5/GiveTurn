@@ -72,7 +72,7 @@ namespace GiveTurn.Blazor.Services
             }
         }
 
-        public async Task<UserDto> SignUp(UserDto newuser)  //Bug It's not take response of controller
+        public async Task<UserDto> SignUp(UserDto newuser)
         {
             try
             {

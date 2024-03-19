@@ -61,7 +61,7 @@ namespace GiveTurn.Web.Pages
                             PhoneNumber = ChangePhoneNumber
                         };
 
-                        var UpdatedUser = await UserServices.UpdateUser(User);
+                        var UpdatedUser = await UserServices.UpdateUser(UpdateUser);
                         if (UpdatedUser != null)
                         {
                             Toast.ShowSuccess("Your account updated with success !");
