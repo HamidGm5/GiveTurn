@@ -43,6 +43,35 @@ div.content {
     height: 1000px;
 }
 
+/*
+    This Part is for Turn Display and after i'm alternative !
+*/
+
+table {
+    width: 100%;
+    border: 2px solid rgb(215, 121, 0, 0.80);
+    margin-top: 18px;
+}
+
+td, th {
+    text-align: center;
+    border-bottom: 1px solid rgb(168, 86, 0, 0.96);
+    border-right: 1px groove rgb(168, 86, 0, 0.96);
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+thead, th {
+    font-weight: bolder;
+}
+
+/*
+    End
+*/
+
 @media screen and (max-width: 700px) {
     .sidebar {
         width: 100%;

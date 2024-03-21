@@ -40,7 +40,31 @@ else
             <br />
 
             <div class="turns">
-                
+                <!-- it's wrong but i'm do because TurnDisplay Razor Page have Error -->
+                <table>
+                    <thead>
+                        <tr>
+                            <th> Turn Date </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Turns)
+                        {
+                            <tr>
+                                <td>
+                                    @item.UserTurnDate.ToString("dd - MM - yyyy hh:mm tt")
+                                </td>
+                                <td>
+                                    <a class="btn btn-danger">
+                                        <span class="oi oi-trash">
+                                        </span>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
 
         </div>

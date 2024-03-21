@@ -21,7 +21,7 @@ namespace GiveTurn.Web.Pages
         [Inject]
         public NavigationManager Navigate { get; set; }
         public UserDto User { get; set; }
-        public ICollection<Model.Dtos.TurnDto> Turns { get; set; }
+        public ICollection<TurnDto> Turns { get; set; }
         public string ErrorMessage { get; set; }
         public DateTime TodayTurn { get; set; }
         public bool IsTurnToday { get; set; } = false;

@@ -56,6 +56,7 @@ namespace GiveTurn.Web.Pages
 
                 if (TunrResponse != null)
                 {
+                    StateHasChanged();
                     User.HaveTurn = true;               // After add a PartUpdate methode for more optimize
                     await UserServices.UpdateUser(User);
                     navigate.NavigateTo(UserMainPageUrl);
