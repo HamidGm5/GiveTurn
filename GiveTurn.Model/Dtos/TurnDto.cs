@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GiveTurn.Models.Dto
+namespace GiveTurn.Model.Dtos
 {
     public class TurnDto
     {

@@ -14,11 +14,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GiveTurn.Models\GiveTurn.Models.csproj" />
+    <Folder Include="wwwroot\JS\" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\JS\" />
+    <ProjectReference Include="..\GiveTurn.Model\GiveTurn.Model.csproj" />
   </ItemGroup>
 
 </Project>

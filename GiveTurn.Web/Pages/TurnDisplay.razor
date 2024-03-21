@@ -1,7 +1,11 @@
-﻿@code {
+﻿@using global::GiveTurn.Model.Dtos
+<h3>TurnDisplay</h3>
+
+@code {
     [Parameter]
-    public ICollection<Models.Dto.TurnDto> UserTurns { get; set; }
+    public ICollection<TurnDto> UserTurns { get; set; }
 }
+
 <table>
     <thead>
         <tr>
@@ -14,7 +18,13 @@
         {
             <tr>
                 <td>
-                    @item.UserTurnDate.ToString("dd - MM - yyyy  hh:mm tt")
+                    @item.UserTurnDate.ToString("dd - MM - yyyy hh:mm tt")
+                </td>
+                <td>
+                    <a class="btn btn-danger">
+                        <span class="oi oi-trash">
+                        </span>
+                    </a>
                 </td>
             </tr>
         }

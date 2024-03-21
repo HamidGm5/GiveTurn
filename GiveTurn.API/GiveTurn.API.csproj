@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GiveTurn.Models\GiveTurn.Models.csproj" />
+    <ProjectReference Include="..\GiveTurn.Model\GiveTurn.Model.csproj" />
   </ItemGroup>
 
 </Project>

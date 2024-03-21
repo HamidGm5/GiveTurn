@@ -1,5 +1,5 @@
 ﻿using GiveTurn.Blazor.Services.Interfaces;
-using GiveTurn.Models.Dto;
+using GiveTurn.Model.Dtos;
 using System.Net.Http.Json;
 
 namespace GiveTurn.Blazor.Services
@@ -49,7 +49,7 @@ namespace GiveTurn.Blazor.Services
                 var Response = await _client.PostAsJsonAsync<AddTurnDto>($"api/Turn", addTurn);
                 if (Response.IsSuccessStatusCode)
                 {
-                    if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    if (Response.StatusCode != System.Net.HttpStatusCode.NoContent)
                     {
                         return await Response.Content.ReadFromJsonAsync<TurnDto>();
                     }

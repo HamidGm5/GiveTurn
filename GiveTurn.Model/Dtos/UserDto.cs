@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GiveTurn.Models.Dto
+namespace GiveTurn.Model.Dtos
 {
     public class UserDto
     {
@@ -12,6 +12,6 @@ namespace GiveTurn.Models.Dto
         public string Username { get; set; }
         public string Password { get; set; }
         public string PhoneNumber { get; set; }
-        public bool HaveTurn { get; set; } = false;
+        public bool HaveTurn { get; set; }
     }
 }

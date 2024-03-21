@@ -1,6 +1,7 @@
 ﻿using GiveTurn.API.Context;
 using GiveTurn.API.Entities;
 using GiveTurn.API.Repository.Interfaces;
+using GiveTurn.Model.Dtos;
 using Microsoft.EntityFrameworkCore;
 
 namespace GiveTurn.API.Repository
@@ -140,7 +141,7 @@ namespace GiveTurn.API.Repository
                     FindUser.Username = user.Username;
                     FindUser.Password = user.Password;
                     FindUser.PhoneNumber = user.PhoneNumber;
-
+                    FindUser.HaveTurn = user.HaveTurn;
                     await _context.SaveChangesAsync();
                     return FindUser;
                 }

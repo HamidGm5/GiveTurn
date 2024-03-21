@@ -2,7 +2,7 @@
 using GiveTurn.API.Context;
 using GiveTurn.API.Entities;
 using GiveTurn.API.Repository.Interfaces;
-using GiveTurn.Models.Dto;
+using GiveTurn.Model.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GiveTurn.API.Controllers
@@ -99,7 +99,7 @@ namespace GiveTurn.API.Controllers
             }
         }
 
-        [HttpPost(Name ="SignUp")]
+        [HttpPost(Name = "SignUp")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -135,7 +135,7 @@ namespace GiveTurn.API.Controllers
         [HttpPatch("{id:int}", Name = "UpdateUser")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
- 
+
         public async Task<ActionResult<UserDto>> UpdateUser(int id, [FromBody] UserDto user)
         {
             try
@@ -143,7 +143,9 @@ namespace GiveTurn.API.Controllers
                 if (ModelState.IsValid)
                 {
                     var UserMap = _mapper.Map<User>(user);
+                    UserMap.Id = id;
                     var Update = await _repository.Update(id, UserMap);
+
                     if (Update == null)
                     {
                         return BadRequest();

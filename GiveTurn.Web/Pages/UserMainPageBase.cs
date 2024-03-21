@@ -1,6 +1,6 @@
 ﻿using Blazored.Toast.Services;
 using GiveTurn.Blazor.Services.Interfaces;
-using GiveTurn.Models.Dto;
+using GiveTurn.Model.Dtos;
 using Microsoft.AspNetCore.Components;
 
 namespace GiveTurn.Web.Pages
@@ -21,10 +21,11 @@ namespace GiveTurn.Web.Pages
         [Inject]
         public NavigationManager Navigate { get; set; }
         public UserDto User { get; set; }
-        public ICollection<TurnDto> Turns { get; set; }
+        public ICollection<Model.Dtos.TurnDto> Turns { get; set; }
         public string ErrorMessage { get; set; }
         public DateTime TodayTurn { get; set; }
         public bool IsTurnToday { get; set; } = false;
+
         protected override async Task OnParametersSetAsync()
         {
             try
@@ -52,13 +53,13 @@ namespace GiveTurn.Web.Pages
             }
         }
 
-        public async void GoToGiveTurnPage_Click()
+        public void GoToGiveTurnPage_Click()
         {
             string GiveTurnUrl = $"GiveTurn/{Username}/{Password}";
             Navigate.NavigateTo(GiveTurnUrl);
         }
 
-        public async void GoToSetting_Click()
+        public void GoToSetting_Click()
         {
             string SettingUrl = $"/Setting/{Username}/{Password}";
             Navigate.NavigateTo(SettingUrl);

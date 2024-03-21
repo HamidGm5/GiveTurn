@@ -2,7 +2,7 @@
 using GiveTurn.API.Entities;
 using GiveTurn.API.Repository;
 using GiveTurn.API.Repository.Interfaces;
-using GiveTurn.Models.Dto;
+using GiveTurn.Model.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GiveTurn.API.Controllers

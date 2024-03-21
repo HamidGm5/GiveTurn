@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
 using GiveTurn.API.Entities;
-using GiveTurn.Models.Dto;
+using GiveTurn.Model.Dtos;
 
 namespace GiveTurn.API.Helper
 {

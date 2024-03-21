@@ -1,5 +1,5 @@
 ﻿using GiveTurn.Blazor.Services.Interfaces;
-using GiveTurn.Models.Dto;
+using GiveTurn.Model.Dtos;
 using Newtonsoft.Json;
 using System.Net.Http.Json;
 using System.Text;

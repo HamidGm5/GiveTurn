@@ -1,5 +1,6 @@
 ﻿using GiveTurn.API.Entities;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace GiveTurn.API.Context
 {
@@ -12,5 +13,6 @@ namespace GiveTurn.API.Context
 
         public DbSet<User> Users { get; set; }
         public DbSet<Turn> Turns { get; set; }
+
     }
 }

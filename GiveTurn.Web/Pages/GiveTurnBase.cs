@@ -1,6 +1,6 @@
 ﻿using Blazored.Toast.Services;
 using GiveTurn.Blazor.Services.Interfaces;
-using GiveTurn.Models.Dto;
+using GiveTurn.Model.Dtos;
 using Microsoft.AspNetCore.Components;
 
 namespace GiveTurn.Web.Pages
@@ -42,7 +42,7 @@ namespace GiveTurn.Web.Pages
                 Userid = User.Id,
             };
 
-            if (User.HaveTurn)
+            if (User.HaveTurn == true)
             {
                 ErrorMessage = "you already have turn !";
             }

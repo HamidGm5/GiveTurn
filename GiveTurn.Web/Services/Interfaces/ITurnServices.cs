@@ -1,4 +1,4 @@
-﻿using GiveTurn.Models.Dto;
+﻿using GiveTurn.Model.Dtos;
 
 namespace GiveTurn.Blazor.Services.Interfaces
 {
