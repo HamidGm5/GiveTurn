@@ -179,5 +179,26 @@ namespace GiveTurn.Blazor.Services
                 return null;
             }
         }
+
+        public async Task<TurnDto> UserLastTurn(int Userid)
+        {
+            try
+            {
+                var UserTurns = await GetUserTurns(Userid);
+                if (UserTurns == null)
+                {
+                    return default(TurnDto);
+                }
+                else
+                {
+                    return UserTurns.LastOrDefault();
+                }
+            }
+
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

@@ -2,6 +2,7 @@
 using GiveTurn.Blazor.Services.Interfaces;
 using GiveTurn.Model.Dtos;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace GiveTurn.Web.Pages
 {
@@ -18,6 +19,8 @@ namespace GiveTurn.Web.Pages
         public ITurnServices TurnServices { get; set; }
         [Inject]
         public IToastService Toast { get; set; }
+        [Inject]
+        public IJSRuntime Js { get; set; }
         [Inject]
         public NavigationManager Navigate { get; set; }
 
@@ -45,15 +48,23 @@ namespace GiveTurn.Web.Pages
 
         public async void DeleteTurns_Click()
         {
-            var DeleteTurns = await TurnServices.DeleteAllUserTurns(User.Id);
-            if (DeleteTurns != null)
+            var UserPassword = await Js.InvokeAsync<string>("Prompting", "Enter Your Password : ");
+            if (UserPassword == User.Password)
             {
-                Toast.ShowSuccess("Your Turns deleted successful");
-                Navigate.NavigateTo($"/UserMainPage/{Username}/{Password}");
+                var DeleteTurns = await TurnServices.DeleteAllUserTurns(User.Id);
+                if (DeleteTurns != null)
+                {
+                    Toast.ShowSuccess("Your Turns deleted successful");
+                    Navigate.NavigateTo($"/UserMainPage/{Username}/{Password}");
+                }
+                else
+                {
+                    Toast.ShowError("Something went wrong !");
+                }
             }
             else
             {
-                Toast.ShowError("Something went wrong !");
+                Toast.ShowError("Your Password is wrong !");
             }
         }
 

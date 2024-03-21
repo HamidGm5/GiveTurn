@@ -2,6 +2,7 @@
 using GiveTurn.Blazor.Services.Interfaces;
 using GiveTurn.Model.Dtos;
 using Microsoft.AspNetCore.Components;
+using System.Security.AccessControl;
 
 namespace GiveTurn.Web.Pages
 {
@@ -24,6 +25,7 @@ namespace GiveTurn.Web.Pages
         public string UserMainPageUrl { get; set; }
         public DateTime TurnDateTime { get; set; }
         public UserDto User { get; set; }
+        public TurnDto UserLastTurn { get; set; }
         public AddTurnDto UserTurn { get; set; }
         public string ErrorMessage { get; set; }
 
@@ -32,27 +34,29 @@ namespace GiveTurn.Web.Pages
             User = await UserServices.Login(Username, Password);
             TurnDateTime = await TurnServices.GetTurnDateTime();
             UserMainPageUrl = $"/UserMainPage/{Username}/{Password}";
+            UserLastTurn = await TurnServices.UserLastTurn(User.Id);
         }
 
         public async void SetTurn_Click()
         {
-            UserTurn = new AddTurnDto
+            if (!CheckTurn())
             {
-                UserTurnDate = TurnDateTime,
-                Userid = User.Id,
-            };
-
-            if (User.HaveTurn == true)
-            {
-                ErrorMessage = "you already have turn !";
+                Toast.ShowError("you already have turn !");
+                navigate.NavigateTo(UserMainPageUrl);
             }
             else
             {
+                UserTurn = new AddTurnDto
+                {
+                    UserTurnDate = TurnDateTime,
+                    Userid = User.Id,
+                };
+
                 var TunrResponse = await TurnServices.AddNewTurn(UserTurn);
 
                 if (TunrResponse != null)
                 {
-                    User.HaveTurn = true;
+                    User.HaveTurn = true;               // After add a PartUpdate methode for more optimize
                     await UserServices.UpdateUser(User);
                     navigate.NavigateTo(UserMainPageUrl);
                     Toast.ShowSuccess("You take a success turn !");
@@ -61,6 +65,34 @@ namespace GiveTurn.Web.Pages
                 {
                     Toast.ShowError("something went wrong , check again");
                 }
+            }
+        }
+
+        public bool CheckTurn()
+        {
+            try
+            {
+                if (User.HaveTurn)
+                {
+                    DateTime dtnow = DateTime.Now;
+                    if (UserLastTurn.UserTurnDate < dtnow)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return true;
+                }
+            }
+
+            catch
+            {
+                return false;
             }
         }
 
