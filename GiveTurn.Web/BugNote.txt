@@ -1,1 +1,1 @@
-Date type in TurnDisplay have problem
+Date type in TurnDisplay have problem but i'm write in usermainpage for version 1 but after i'm fix it.

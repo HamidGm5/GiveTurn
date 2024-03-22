@@ -1,0 +1,34 @@
+﻿@page "/DeleteTurn/{Username}/{Password}/{TurnId:int}"
+@inherits DeleteTurnBase
+
+@if (User == null && Turn == null && ErrorMessage == null && UserTurnDateTime == null)
+{
+    <SpinnerDisplay />
+}
+else if (ErrorMessage != null)
+{
+    <h2 style="color : red;font-weight:900;">
+        @ErrorMessage
+    </h2>
+}
+else
+{
+    <div class="area">
+        <div class="Turnbox">
+            <h2 class="text-white mb-2">
+                Delete Turn
+            </h2>
+
+            <label class="turn-lbl">
+                Turn Date :
+            </label>
+
+            <input class="turn-input" type="datetime" @bind="UserTurnDateTime" readonly />
+            <br />
+            <a class="btn btn-submit" @onclick="() => DeleteTurn_Click()">
+                Delete This Turn
+            </a>
+
+        </div>
+    </div>
+}

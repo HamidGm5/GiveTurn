@@ -1,0 +1,45 @@
+﻿.Turnbox {
+    border: 10px solid rgb(196, 0, 101);
+    padding: 10px;
+    border-radius: 25px;
+    margin: 50px auto 435px auto;
+    width: 60%;
+    text-align: center;
+    font-family: 'Bookman Old Style';
+}
+
+.turn-lbl {
+    color: rgb(219, 219, 219);
+    font-weight: 800;
+    font-size: 1.8rem;
+}
+
+.turn-input {
+    width: auto;
+    border: 2px solid rgb(88, 88, 88);
+    border-radius: 10px;
+    margin: 10px 8px;
+    font-size: 1.4rem;
+    width: 40%;
+    font-family: 'Bookman Old Style';
+}
+
+a {
+    text-decoration: none;
+    transition: ease-in-out .3s;
+    border-radius: 12px;
+}
+
+    a:hover {
+        border-radius: 18px;
+        background-color: rgb(219, 219, 219);
+        color: rgb(196, 0, 101);
+    }
+
+.btn-submit {
+    background-color: rgb(196, 0, 101);
+    color: rgb(219, 219, 219);
+    font-weight: 600;
+    margin: 20px auto 40px auto;
+    font-size: 1.5rem;
+}

@@ -13,20 +13,20 @@ namespace GiveTurn.Blazor.Services
             _client = client;
         }
 
-        public async Task<TurnDto> DeleteTurn(int Userid, int TurnId)
+        public async Task<bool> DeleteTurn(int Userid, int TurnId)
         {
             try
             {
                 var Response = await _client.DeleteAsync($"api/Turn/{Userid}/{TurnId}");
                 if (Response.IsSuccessStatusCode)
                 {
-                    if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    if (Response.StatusCode != System.Net.HttpStatusCode.NoContent)
                     {
-                        return await Response.Content.ReadFromJsonAsync<TurnDto>();
+                        return true;
                     }
                     else
                     {
-                        return null;
+                        return false;
                     }
                 }
                 else
@@ -38,7 +38,7 @@ namespace GiveTurn.Blazor.Services
 
             catch
             {
-                return null;
+                return false;
             }
         }
 
@@ -78,7 +78,7 @@ namespace GiveTurn.Blazor.Services
                 var Response = await _client.GetAsync($"api/Turn/{Userid}/{TurnId}");
                 if (Response.IsSuccessStatusCode)
                 {
-                    if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)
+                    if (Response.StatusCode != System.Net.HttpStatusCode.NoContent)
                     {
                         return await Response.Content.ReadFromJsonAsync<TurnDto>();
                     }
@@ -160,23 +160,23 @@ namespace GiveTurn.Blazor.Services
             }
         }
 
-        public async Task<TurnDto> DeleteAllUserTurns(int Userid)
+        public async Task<bool> DeleteAllUserTurns(int Userid)
         {
             var Response = await _client.DeleteAsync($"api/Turn/{Userid}");
             if (Response.IsSuccessStatusCode)
             {
                 if (Response.StatusCode != System.Net.HttpStatusCode.NoContent)
                 {
-                    return await Response.Content.ReadFromJsonAsync<TurnDto>();
+                    return true;
                 }
                 else
                 {
-                    return default(TurnDto);
+                    return false;
                 }
             }
             else
             {
-                return null;
+                return false;
             }
         }
 

@@ -2,6 +2,7 @@
 using GiveTurn.Blazor.Services.Interfaces;
 using GiveTurn.Model.Dtos;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace GiveTurn.Web.Pages
 {
@@ -18,6 +19,8 @@ namespace GiveTurn.Web.Pages
         public ITurnServices TurnServices { get; set; }
         [Inject]
         public IToastService Toast { get; set; }
+        [Inject]
+        public IJSRuntime Js { get; set; }
         [Inject]
         public NavigationManager Navigate { get; set; }
         public UserDto User { get; set; }
@@ -63,6 +66,25 @@ namespace GiveTurn.Web.Pages
         {
             string SettingUrl = $"/Setting/{Username}/{Password}";
             Navigate.NavigateTo(SettingUrl);
+        }
+
+        public async void DeleteTransaction(int TurnId)
+        {
+            try
+            {
+                string DeleteTurnUrl = $"/DeleteTurn/{Username}/{Password}/{TurnId}";
+                Navigate.NavigateTo(DeleteTurnUrl);
+            }
+
+            catch (Exception ex)
+            {
+                ErrorMessage = ex.Message;
+            }
+        }
+
+        public void RefreshPage(NavigationManager manager)
+        {
+            manager.NavigateTo(manager.Uri, true);
         }
     }
 }

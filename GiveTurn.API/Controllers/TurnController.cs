@@ -95,7 +95,8 @@ namespace GiveTurn.API.Controllers
                     var Turn = await _repository.GetUserTurn(Userid, id);
                     if (Turn != null)
                     {
-                        return Ok(Turn);
+                        var TurnMap = _mapper.Map<TurnDto>(Turn);
+                        return Ok(TurnMap);
                     }
                     else
                     {

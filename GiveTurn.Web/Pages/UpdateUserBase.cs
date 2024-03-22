@@ -2,6 +2,7 @@
 using GiveTurn.Blazor.Services.Interfaces;
 using GiveTurn.Model.Dtos;
 using Microsoft.AspNetCore.Components;
+using Microsoft.JSInterop;
 
 namespace GiveTurn.Web.Pages
 {
@@ -18,6 +19,8 @@ namespace GiveTurn.Web.Pages
         public IToastService Toast { get; set; }
         [Inject]
         public NavigationManager navigate { get; set; }
+        [Inject]
+        public IJSRuntime Js { get; set; }
 
         public UserDto User { get; set; }
         public UserDto UpdateUser { get; set; }
@@ -31,12 +34,21 @@ namespace GiveTurn.Web.Pages
         {
             try
             {
-                User = await UserServices.Login(Username, Password);
+                var ConfirmPasswordFromPrompting = await Js.InvokeAsync<string>("Prompting", "Enter Your Password");
+                if (ConfirmPasswordFromPrompting == Password)
+                {
+                    User = await UserServices.Login(Username, Password);
 
-                ChangeUsername = User.Username;
-                ChangePassword = User.Password;
-                ConfirmPassword = ChangePassword;
-                ChangePhoneNumber = User.PhoneNumber;
+                    ChangeUsername = User.Username;
+                    ChangePassword = User.Password;
+                    ConfirmPassword = ChangePassword;
+                    ChangePhoneNumber = User.PhoneNumber;
+                }
+                else
+                {
+                    Toast.ShowError("Your password is wrong !");
+                    navigate.NavigateTo("/");
+                }
             }
 
             catch (Exception ex)

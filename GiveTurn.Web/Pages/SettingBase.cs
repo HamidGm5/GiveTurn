@@ -51,8 +51,8 @@ namespace GiveTurn.Web.Pages
             var UserPassword = await Js.InvokeAsync<string>("Prompting", "Enter Your Password : ");
             if (UserPassword == User.Password)
             {
-                var DeleteTurns = await TurnServices.DeleteAllUserTurns(User.Id);
-                if (DeleteTurns != null)
+                bool DeleteTurns = await TurnServices.DeleteAllUserTurns(User.Id);
+                if (DeleteTurns)
                 {
                     Toast.ShowSuccess("Your Turns deleted successful");
                     Navigate.NavigateTo($"/UserMainPage/{Username}/{Password}");
