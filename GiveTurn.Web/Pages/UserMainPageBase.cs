@@ -36,9 +36,10 @@ namespace GiveTurn.Web.Pages
                 DateTime Now = DateTime.Now;
                 User = await UserServices.Login(Username, Password);
                 Turns = await TurnServices.GetUserTurns(User.Id);
+
                 foreach (var turn in Turns)
                 {
-                    if (turn.UserTurnDate < Now.AddHours(24) && turn.UserTurnDate > Now)
+                    if (turn.UserTurnDate < Now.AddMinutes(2) && turn.UserTurnDate > Now)
                     {
                         IsTurnToday = true;
                         TodayTurn = turn.UserTurnDate;
@@ -68,7 +69,7 @@ namespace GiveTurn.Web.Pages
             Navigate.NavigateTo(SettingUrl);
         }
 
-        public async void DeleteTransaction(int TurnId)
+        public async void DeleteTurn(int TurnId)
         {
             try
             {

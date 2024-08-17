@@ -242,6 +242,7 @@ namespace GiveTurn.API.Repository
             DateTime ReserveDate = await CheckReserveDate();
             DateTime LastTurn = await LastTurnDateTime();
             DateTime LastTurnPlus = LastTurn.AddMinutes(25);
+
             DateTime DateTimeForReturn;
 
             var NowDateTimeToMili = new DateTimeOffset(NowDateTimePlus).ToUnixTimeMilliseconds();
@@ -252,7 +253,7 @@ namespace GiveTurn.API.Repository
                 {
                     if (LastTurnPlus.Hour < 20)
                     {
-                        DateTimeForReturn = new DateTime(ReserveDate.Year, ReserveDate.Month, ReserveDate.Day,
+                        DateTimeForReturn = new DateTime(LastTurnPlus.Year, LastTurnPlus.Month, LastTurnPlus.Day,
                                                             LastTurnPlus.Hour, LastTurnPlus.Minute, 0);
                         return DateTimeForReturn;
                     }

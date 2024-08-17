@@ -1,0 +1,221 @@
+[33mcommit 001fc272efc4c08f26fd6530cdfbe49fa3122747[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Fri Mar 22 11:18:56 2024 +0330
+
+    it's seems project is end but have some problems !
+
+[33mcommit 18a3cce01588af8aa84c2fc584fda139b70c7b0c[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Thu Mar 21 19:37:57 2024 +0330
+
+    alternative turn table to User Main page until when i''m fix it
+
+[33mcommit 718bd451716488d0e144f31dbd6c3095b9a3c548[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Thu Mar 21 12:34:37 2024 +0330
+
+    GiveTurn Page Evolved and deleetUserTurns improve
+
+[33mcommit 2a38e2925cc9110209ec35e613fca68dc21a773c[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Thu Mar 21 11:12:42 2024 +0330
+
+    debug change have turn property for user in Repository
+
+[33mcommit 15686ad4b0e8d6b245fd12dd8c52fd8e789158ca[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Tue Mar 19 18:16:18 2024 +0330
+
+    Update User fixed
+
+[33mcommit 2628451fe6bca74afaba8a5b66a9522ea9f4b584[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Tue Mar 19 18:10:40 2024 +0330
+
+    Post and Update had problem of Api Program and now fix it but now have problem for Update User in blazor
+
+[33mcommit 9556222d13375f330e2e4b93d5b41d7301a68433[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Tue Mar 19 17:13:33 2024 +0330
+
+    DeletePage Improved
+
+[33mcommit 3bd3aed8140b3ad0d2d6c9b04d72ce984da70214[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Tue Mar 19 12:24:41 2024 +0330
+
+    Delete User Page Complete
+
+[33mcommit 210c45c7b7e99f1a90955ad622b7e6e954aa2b16[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Mon Mar 18 23:31:51 2024 +0330
+
+    Delete page write and correct the something misspelling
+
+[33mcommit d3755dd896fd776328683307e13a527185677180[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Sun Mar 17 18:48:29 2024 +0330
+
+    wrtie Setting and Update Page and ui but Update and Post have problem in Services
+
+[33mcommit bd5346ca8fe6647b5556de27e05ab9678e7a2ae7[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Sat Mar 16 20:43:10 2024 +0330
+
+    write Delete User Turns Services
+
+[33mcommit 53c2e6916b0da5126d59dd7f46f3b6a22f6883d0[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Sat Mar 16 20:38:21 2024 +0330
+
+    Write Delete Turns For user But Post Mehthods have problem
+
+[33mcommit 868e8ece068e0e44d438d2f7a1199756341e7f98[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Fri Mar 15 14:39:48 2024 +0330
+
+    Add Give Turn Page and Setting and Write Give Turn UI
+
+[33mcommit 07e327c9ac2639939371771c6c7acf6931c434f0[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Fri Mar 15 10:21:36 2024 +0330
+
+    again solve error for change blazor Rename
+
+[33mcommit 7adfe9a4771a0899db2af12e34033d2914f99f5e[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Fri Mar 15 09:35:42 2024 +0330
+
+    change all turns method in controller to see turn time
+
+[33mcommit bc24155693dd34eb9dd8819d3a6d56d99cb1aea1[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Tue Mar 12 18:43:10 2024 +0330
+
+    debug turn services and add Spinner and better work for UserMainPage
+
+[33mcommit b9abbbf47d97e51ee496f22616d5071230fa1935[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Mon Mar 11 14:10:29 2024 +0330
+
+    the ui had problem and now solving
+
+[33mcommit 370179390a10e73059e9de17b2dac9a8854a3499[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Sat Mar 9 23:08:10 2024 +0330
+
+    SignUp Ui Wroted but Services have problem
+
+[33mcommit f4ca3b6c10ada639478e11a0fb7cd749e4a5c39f[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Fri Mar 8 16:02:22 2024 +0330
+
+    Login page UI wroted
+
+[33mcommit 1205f7e09c2a72142ebb316c0c8d82b11fac16e4[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Fri Mar 8 09:57:26 2024 +0330
+
+    Home page ui wroted
+
+[33mcommit 532f961868e9bf0420f851ce8c28a63c3cc1bd33[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Thu Mar 7 17:57:26 2024 +0330
+
+    add Toast Notification and Write Login Page
+
+[33mcommit d8dea270e68f289d270d48680c2a4a704d28fe7a[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Thu Mar 7 09:58:40 2024 +0330
+
+    Delete default files
+
+[33mcommit 7906b96a908129268f0e11e67afed2ed67e456da[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Thu Mar 7 09:56:19 2024 +0330
+
+    add scoped in Progeam
+
+[33mcommit 231a13577155aced9d20ac30277d7e8113aecf49[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Thu Mar 7 09:53:12 2024 +0330
+
+    Complete Turn Services
+
+[33mcommit d66bad18c112571654da69b9d6bc552d9e80e960[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Thu Mar 7 09:40:52 2024 +0330
+
+    debug JsonConvert
+
+[33mcommit 681ed4324305835984cd4caa1a626895cd534fd0[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Thu Mar 7 09:34:25 2024 +0330
+
+    Complete User Services and Write Turn Interface
+
+[33mcommit 27bae3d0aac622564eb9b9ec4576a511059067ad[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Wed Mar 6 16:19:59 2024 +0330
+
+    Write User And Turn Interface
+
+[33mcommit c5391867a1512d10ccedc3e51571b5e88eecb606[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Wed Mar 6 16:11:37 2024 +0330
+
+    add Blazor and Architectur and connect relation
+
+[33mcommit e1c798ab50ddf1a2c2cb8a115244b228cbf2cb9e[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Wed Mar 6 10:36:55 2024 +0330
+
+    Change Turn DateTime Algorythm
+
+[33mcommit c2d34dcdb5679bdcb1071863856c6ee959b7f5f9[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Fri Mar 1 23:13:39 2024 +0330
+
+    another algorythm For TurnDateTime
+
+[33mcommit b56e39ca26ac2f1b9bb89ca3e2ec6368153232b0[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Fri Mar 1 19:31:42 2024 +0330
+
+    add Comment For False Timing
+
+[33mcommit 0e7b818d161733f450a83cb99bb3df90db6bb9e4[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Fri Mar 1 19:24:37 2024 +0330
+
+    User TurnDateTime is Fix now but need evolve
+
+[33mcommit 3516fe0d59881c046b1d2f8ca1e3f764922b4c8d[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Fri Mar 1 18:55:32 2024 +0330
+
+    delete CancellationTokenSource of Repository
+
+[33mcommit 9e2795fa98eb59ef5124fdd97026b1bd48134b9d[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Fri Mar 1 18:52:28 2024 +0330
+
+    Change a little Turn repository and Complete Controller But we need wait for first initialize a time with method
+
+[33mcommit d4159e1879d1d01fc8eb617cce9f6922b5e4f181[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Wed Feb 28 23:19:16 2024 +0330
+
+    Complete User Controller
+
+[33mcommit 0794f64fc8d5d03f3a0b200f888d19ba3faf6eed[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Wed Feb 28 23:14:22 2024 +0330
+
+    Add project files.
+
+[33mcommit a32c9b6214a181c37c615a663f121d0a8b296f09[m
+Author: Hamid <gmhamid6@gmail.com>
+Date:   Wed Feb 28 23:14:20 2024 +0330
+
+    Add .gitattributes and .gitignore.
