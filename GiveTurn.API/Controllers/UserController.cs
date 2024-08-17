@@ -50,7 +50,7 @@ namespace GiveTurn.API.Controllers
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
-        
+
         public async Task<ActionResult<UserDto>> GetuserById(int Userid)
         {
             try
@@ -109,15 +109,22 @@ namespace GiveTurn.API.Controllers
             {
                 if (ModelState.IsValid)
                 {
-                    var UserMap = _mapper.Map<User>(user);
-                    if (UserMap == null)
+                    if (!await _repository.UserExist(user.Username))
                     {
-                        return BadRequest();
+                        var UserMap = _mapper.Map<User>(user);
+                        if (UserMap == null)
+                        {
+                            return BadRequest();
+                        }
+                        else
+                        {
+                            var UserAdd = await _repository.SignUp(UserMap);
+                            return Ok(UserAdd);
+                        }
                     }
                     else
                     {
-                        var UserAdd = await _repository.SignUp(UserMap);
-                        return Ok(UserAdd);
+                        return BadRequest();
                     }
                 }
                 else

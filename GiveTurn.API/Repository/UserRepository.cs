@@ -157,5 +157,17 @@ namespace GiveTurn.API.Repository
                 return null;
             }
         }
+
+        public async Task<bool> UserExist(string Username)
+        {
+            try
+            {
+                return await _context.Users.Where(fu => fu.Username == Username).FirstOrDefaultAsync() != null;
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

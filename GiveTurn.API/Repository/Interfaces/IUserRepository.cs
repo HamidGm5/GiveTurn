@@ -10,5 +10,6 @@ namespace GiveTurn.API.Repository.Interfaces
         Task<User> SignUp(User user);
         Task<User> Update(int Userid, User user);
         Task<bool> Delete(int Userid);
+        Task<bool> UserExist(string Username);
     }
 }
