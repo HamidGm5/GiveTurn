@@ -139,7 +139,7 @@ namespace GiveTurn.API.Controllers
             }
         }
 
-        [HttpPatch("{id:int}", Name = "UpdateUser")]
+        [HttpPut("{id:int}", Name = "UpdateUser")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
 
@@ -168,6 +168,26 @@ namespace GiveTurn.API.Controllers
                 }
             }
 
+            catch
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPatch("{id:int}/{status}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        [ProducesResponseType(404)]
+        public async Task<ActionResult<bool>> UpdateHaveTurn(int id, bool status)
+        {
+            try
+            {
+                var Update = await _repository.UpdateHaveTurn(id, status);
+                if (Update)
+                    return Ok("successfully");
+                else
+                    return NotFound();
+            }
             catch
             {
                 return BadRequest();

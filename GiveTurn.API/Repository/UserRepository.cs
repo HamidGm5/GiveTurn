@@ -158,6 +158,26 @@ namespace GiveTurn.API.Repository
             }
         }
 
+        public async Task<bool> UpdateHaveTurn(int userid , bool status)
+        {
+            try
+            {
+                var FindUser = await _context.Users.FindAsync(userid);
+                if(FindUser != null)
+                {
+                    FindUser.HaveTurn = status;
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+                return false;
+
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public async Task<bool> UserExist(string Username)
         {
             try

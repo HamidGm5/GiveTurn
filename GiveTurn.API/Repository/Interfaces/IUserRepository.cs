@@ -9,6 +9,7 @@ namespace GiveTurn.API.Repository.Interfaces
         Task<User> Login(string username, string password);
         Task<User> SignUp(User user);
         Task<User> Update(int Userid, User user);
+        Task<bool> UpdateHaveTurn(int userid , bool status);
         Task<bool> Delete(int Userid);
         Task<bool> UserExist(string Username);
     }
