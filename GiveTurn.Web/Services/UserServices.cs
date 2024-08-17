@@ -81,7 +81,7 @@ namespace GiveTurn.Blazor.Services
                 {
                     if (Response.StatusCode == System.Net.HttpStatusCode.NoContent)
                     {
-                        return default(UserDto);
+                        return null;
                     }
                     else
                     {
@@ -107,7 +107,7 @@ namespace GiveTurn.Blazor.Services
             {
                 var JsonRequest = JsonConvert.SerializeObject(newSpec);
                 var Content = new StringContent(JsonRequest, Encoding.UTF8, "application/json-patch+json");
-                var Response = await _client.PatchAsync($"api/User/{newSpec.Id}", Content);
+                var Response = await _client.PutAsync($"api/User/{newSpec.Id}", Content);
 
                 if (Response.IsSuccessStatusCode)
                 {
@@ -130,6 +130,26 @@ namespace GiveTurn.Blazor.Services
             catch
             {
                 return null;
+            }
+        }
+
+        public async Task<bool> UpdateUserHaveTurn(int userid, bool status)
+        {
+            try
+            {
+                var Response = await _client.PatchAsync($"api/User/{userid}/{status}", null);
+                if (Response.IsSuccessStatusCode) 
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch
+            {
+                return false;
             }
         }
     }
