@@ -21,6 +21,7 @@ builder.Services.AddDbContext<GiveTurnContext>(options =>
 
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<ITurnRepository, TurnRepository>();
+builder.Services.AddScoped<IDeleteTurnsRepository, DeletedTurnRepository>();
 
 
 var app = builder.Build();

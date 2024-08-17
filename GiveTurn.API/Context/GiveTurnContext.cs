@@ -13,6 +13,7 @@ namespace GiveTurn.API.Context
 
         public DbSet<User> Users { get; set; }
         public DbSet<Turn> Turns { get; set; }
+        public DbSet<DeleteTurns> deleteTurns { get; set; }
 
     }
 }

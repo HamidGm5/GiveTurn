@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace GiveTurn.API.Migrations
 {
     /// <inheritdoc />
-    public partial class GiveTurnMigrationV1 : Migration
+    public partial class GiveTurnMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -25,6 +25,26 @@ namespace GiveTurn.API.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "deleteTurns",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Userid = table.Column<int>(type: "int", nullable: false),
+                    TurnDate = table.Column<DateTime>(type: "datetime2", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_deleteTurns", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_deleteTurns_Users_Userid",
+                        column: x => x.Userid,
+                        principalTable: "Users",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -48,6 +68,11 @@ namespace GiveTurn.API.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_deleteTurns_Userid",
+                table: "deleteTurns",
+                column: "Userid");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Turns_UserId",
                 table: "Turns",
                 column: "UserId");
@@ -56,6 +81,9 @@ namespace GiveTurn.API.Migrations
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "deleteTurns");
+
             migrationBuilder.DropTable(
                 name: "Turns");
 

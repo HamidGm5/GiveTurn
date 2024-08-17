@@ -22,6 +22,27 @@ namespace GiveTurn.API.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
 
+            modelBuilder.Entity("GiveTurn.API.Entities.DeleteTurns", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("ID"));
+
+                    b.Property<DateTime>("TurnDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Userid")
+                        .HasColumnType("int");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("Userid");
+
+                    b.ToTable("deleteTurns");
+                });
+
             modelBuilder.Entity("GiveTurn.API.Entities.Turn", b =>
                 {
                     b.Property<int>("Id")
@@ -69,6 +90,17 @@ namespace GiveTurn.API.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
+                });
+
+            modelBuilder.Entity("GiveTurn.API.Entities.DeleteTurns", b =>
+                {
+                    b.HasOne("GiveTurn.API.Entities.User", "user")
+                        .WithMany()
+                        .HasForeignKey("Userid")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("user");
                 });
 
             modelBuilder.Entity("GiveTurn.API.Entities.Turn", b =>
