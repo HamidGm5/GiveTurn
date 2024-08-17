@@ -36,15 +36,26 @@ namespace GiveTurn.Web.Pages
                 DateTime Now = DateTime.Now;
                 User = await UserServices.Login(Username, Password);
                 Turns = await TurnServices.GetUserTurns(User.Id);
+                var LastTurn = Turns.LastOrDefault();
 
+                if (Turns != null)
+                {
+                    if ((LastTurn.UserTurnDate.Year != Now.Year ||
+                        LastTurn.UserTurnDate.Month != Now.Month ||
+                        LastTurn.UserTurnDate.Day != Now.Day) &&
+                        User.HaveTurn == true)
+                    {
+                        await UserServices.UpdateUserHaveTurn(User.Id, false);
+                    }
+                }
                 foreach (var turn in Turns)
                 {
-                    if (turn.UserTurnDate < Now.AddMinutes(2) && turn.UserTurnDate > Now)
+                    if (turn.UserTurnDate < Now.AddHours(24) && turn.UserTurnDate > Now)
                     {
                         IsTurnToday = true;
                         TodayTurn = turn.UserTurnDate;
                     }
-                    else
+                    else if (turn.UserTurnDate < Now)
                     {
                         IsTurnToday = false;
                     }
